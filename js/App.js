@@ -5,7 +5,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const image = new Image();
-image.src = './textures/wood01.png';
+image.src = './textures/wood.png';
 
 let coordinateX = 0;
 console.log(10 % canvas.width + canvas.width)
