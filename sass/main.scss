@@ -5,8 +5,56 @@
 
 body {
     height: 100vh;
+    font-family: 'Knewave', cursive;
 }
 
 #canvas {
     position: relative;
+}
+
+#start-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    opacity: 1;
+    position: absolute;
+    width: 40%;
+    top: 50%;
+    left: 30%;
+    z-index: 1;
+}
+
+.start {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__spinner {
+        color: #b87623;
+        text-shadow: 3px 3px 3px black;
+        overflow: hidden;
+        font-size: 3rem;
+        overflow: inherit;
+        animation: 400ms cubic-bezier(.35,.3,.32,.99) 100ms 20 alternate move;
+        @for $i from 1 through 12 {
+            &--#{$i} {
+                animation-delay: 50ms * $i;
+            }
+        }
+    }
+}
+@keyframes move {
+    0% {
+        transform: translateY(0);
+        opacity: .7;
+    }
+    60% {
+        transform: translateY(10px);
+        opacity: .9;
+    }
+    100% {
+        transform: translateY(14px);
+        opacity: 1;
+    }
 }

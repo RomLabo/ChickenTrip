@@ -14,8 +14,15 @@ class GameCanvas {
         this.chickenResponsiveSize = [this.canvasSize[0] * .07, this.canvasSize[0] * .07];
         this.chickenPositionX = this.canvasSize[0] * .04;
         this.chickenPositionY = this.canvasSize[1] * .8;
+        this.chickenVariablePositionY = this.chickenPositionY;
+        this.chickenJumpParams = [-this.canvasSize[1] * .04, this.canvasSize[1] * .002]
 
         this.difficultyLevel = 2;
+    }
+    jumpAction(jump) {
+        this.chickenVariablePositionY = Math.min(this.chickenVariablePositionY + jump, this.chickenPositionY);
+        console.log(jump);
+        console.log(this.chickenVariablePositionY + jump);
     }
     createBackground() {
         let backgroundMotion = (this.coordinateX * this.difficultyLevel) % this.canvasSize[0];
@@ -24,6 +31,6 @@ class GameCanvas {
     }
     createChicken() {
         let chickenMotion = Math.floor((this.coordinateX % 18) / 6) * this.chickenSize[1];
-        this.context.drawImage(this.image, 0, 432 + chickenMotion, ...this.chickenSize, this.chickenPositionX, this.chickenPositionY, ...this.chickenResponsiveSize);                  
+        this.context.drawImage(this.image, 0, 432 + chickenMotion, ...this.chickenSize, this.chickenPositionX, this.chickenVariablePositionY, ...this.chickenResponsiveSize);                  
     }
 }
