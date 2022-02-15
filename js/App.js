@@ -1,16 +1,13 @@
 class App {
     constructor() {
-        this.image = new Image();
-        this.image.src = './textures/wood.png';
         this.startClickEvent = 0;
         this.collision = false;
         this.teleportation = false;
         this.startAnimation = document.getElementById('start-animation');
     }
     main() {
-        let coordinateX = 0;
-        let jump;
-        const gameCanvas = new GameCanvas(this.image, coordinateX);
+        const gameSetting = new GameSetting();
+        const gameCanvas = new GameCanvas(gameSetting);
         
         const render = () => {
             switch (true) {
@@ -24,22 +21,22 @@ class App {
                     break;
                 case this.teleportation === true:
                     console.log('Teleportation');
-                    // Change background and chicken size, add a multiplier to coordinateX
+                    // Change background and chicken size, difficultyLevel ++, gameSetting._gameIndex = 0;
                     break;
                 default:
                     this.startAnimation.style.zIndex = -5;
-                    gameCanvas.coordinateX ++;
+                    gameSetting._gameIndex ++;
                     gameCanvas.createBackground();
                     gameCanvas.createChicken();
-                    gameCanvas.jumpAction(jump);
-                    jump += gameCanvas.chickenJumpParams[1];
+                    gameCanvas.chickenJump();
+                    gameCanvas.jump += gameCanvas.chickenJumpParams[1];
             } 
             window.requestAnimationFrame(render);      
         }
 
         document.addEventListener('click', () => this.startClickEvent ++);
-        document.addEventListener('click', () => jump = gameCanvas.chickenJumpParams[0]);
-        this.image.addEventListener('load', render);
+        document.addEventListener('click', () => gameCanvas.jump = gameCanvas.chickenJumpParams[0]);
+        gameSetting.texture.addEventListener('load', render);
     }
 }
 const app = new App();
