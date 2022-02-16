@@ -1,19 +1,22 @@
 class App {
     constructor() {
+        this.texture = new Image();
+        this.texture.src = './textures/wood.png';
+
         this.startClickEvent = 0;
         this.collision = false;
         this.teleportation = false;
         this.startAnimation = document.getElementById('start-animation');
     }
     main() {
-        const gameSetting = new GameSetting();
-        const gameCanvas = new GameCanvas(gameSetting);
+        const gameSetting = new GameSetting(this.texture);
+        const gameBackground = new GameBackgound(gameSetting);
+        const gameChicken = new GameChicken(gameSetting);
         
         const render = () => {
             switch (true) {
                 case this.startClickEvent === 0:
-                    gameCanvas.createBackground();
-                    gameCanvas.createChicken();
+                    gameBackground.renderBackground();
                     break;
                 case this.startClickEvent >= 1 && this.collision === true:
                     console.log('Restart');
@@ -26,16 +29,21 @@ class App {
                 default:
                     this.startAnimation.style.zIndex = -5;
                     gameSetting._gameIndex ++;
-                    gameCanvas.createBackground();
-                    gameCanvas.createChicken();
-                    gameCanvas.chickenJump();
-                    gameCanvas.jump += gameCanvas.chickenJumpParams[1];
+                    gameBackground.renderBackground();
+                    gameChicken.renderChicken();
+                    gameChicken.jump += gameChicken.chickenJumpParams[1];
             } 
             window.requestAnimationFrame(render);      
         }
 
         document.addEventListener('click', () => this.startClickEvent ++);
-        document.addEventListener('click', () => gameCanvas.jump = gameCanvas.chickenJumpParams[0]);
+        document.addEventListener('click', () => gameChicken.jump = gameChicken.chickenJumpParams[0]);
+        window.addEventListener('resize', () => {
+            console.log(window.innerWidth)
+            console.log(window.innerHeight)
+            console.log(screen.width)
+            console.log(screen.height)
+        })
         gameSetting.texture.addEventListener('load', render);
     }
 }

@@ -1,9 +1,11 @@
 class GameSetting {
-    constructor() {
-        this._texture = new Image();
-        this._texture.src = './textures/wood.png';
-        this._backgroundSize = [768, 432];
-        this._chickenSize = [65, 65];
+    constructor(texture) {
+        this._texture = texture;
+        
+        this._canvas = document.getElementById('canvas');
+        this._context = this._canvas.getContext('2d');
+        this._canvas.width = window.innerWidth;
+        this._canvas.height = window.innerHeight;
 
         this._gameIndex = 0;
         this._difficultyLevel = 2;
@@ -11,16 +13,16 @@ class GameSetting {
     get texture() {
         return this._texture;
     }
-    get backgroundSize() {
-        return this._backgroundSize;
-    }
-    get chickenSize() {
-        return this._chickenSize;
-    }
     get gameIndex() {
         return this._gameIndex;
     }
     get difficultyLevel() {
         return this._difficultyLevel;
+    }
+    get context(){
+        return this._context
+    }
+    get canvasSize() {
+        return [this._canvas.width, this._canvas.height]
     }
 }
