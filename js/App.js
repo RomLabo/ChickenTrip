@@ -12,6 +12,7 @@ class App {
         const gameSetting = new GameSetting(this.texture);
         const gameBackground = new GameBackgound(gameSetting);
         const gameChicken = new GameChicken(gameSetting);
+        const gameButcher = new GameButcher(gameSetting);
         
         const render = () => {
             switch (true) {
@@ -31,6 +32,7 @@ class App {
                     gameSetting._gameIndex ++;
                     gameBackground.renderBackground();
                     gameChicken.renderChicken();
+                    gameButcher.renderButcher();
                     gameChicken.jump += gameChicken.chickenJumpParams[1];
             } 
             window.requestAnimationFrame(render);      

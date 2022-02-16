@@ -9,13 +9,13 @@ class GameChicken {
         this.chickenPosition = [this.canvasSize[0] * .04, this.canvasSize[1] * .75];
         
         this.chickenVariablePositionY = this.chickenPosition[1];
-        this.chickenJumpParams = [-this.canvasSize[1] * .04, this.canvasSize[1] * .002];
+        this.chickenJumpParams = [-this.canvasSize[1] * .03, this.canvasSize[1] * .001];
         this.jump;
     }
     createChicken() {
         let chickenMotion = Math.floor((this.setting.gameIndex % 18) / 6) * this.chickenSize[1];
-        let chickenCanvasParams = [this.chickenPosition[0], this.chickenVariablePositionY, ...this.chickenResponsiveSize]
         let chickenTextureParams = [this.setting.texture, chickenMotion, 552, ...this.chickenSize];
+        let chickenCanvasParams = [this.chickenPosition[0], this.chickenVariablePositionY, ...this.chickenResponsiveSize];
         this.context.drawImage(...chickenTextureParams, ...chickenCanvasParams);                  
     }
     chickenJump() {
