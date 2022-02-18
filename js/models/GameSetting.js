@@ -8,7 +8,6 @@ class GameSetting {
         this._canvas.height = window.innerHeight;
 
         this._gameIndex = 0;
-        this._difficultyLevel = 2;
     }
     get texture() {
         return this._texture;
@@ -17,7 +16,7 @@ class GameSetting {
         return this._gameIndex;
     }
     get difficultyLevel() {
-        return this._difficultyLevel;
+        return Math.round(this._canvas.width * .003);
     }
     get context(){
         return this._context

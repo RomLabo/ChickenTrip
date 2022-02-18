@@ -6,7 +6,7 @@ class GameChicken {
         
         this.chickenSize = [65, 65];
         this.chickenResponsiveSize = [this.canvasSize[0] * .07, this.canvasSize[0] * .07];
-        this.chickenPosition = [this.canvasSize[0] * .04, this.canvasSize[1] * .75];
+        this.chickenPosition = [this.canvasSize[0] * .04, this.canvasSize[1] * .77];
         
         this.chickenVariablePositionY = this.chickenPosition[1];
         this.chickenJumpParams = [-this.canvasSize[1] * .03, this.canvasSize[1] * .001];

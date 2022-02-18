@@ -34,18 +34,19 @@ class App {
                     gameChicken.renderChicken();
                     gameButcher.renderButcher();
                     gameChicken.jump += gameChicken.chickenJumpParams[1];
+                    
             } 
             window.requestAnimationFrame(render);      
         }
 
         document.addEventListener('click', () => this.startClickEvent ++);
-        document.addEventListener('click', () => gameChicken.jump = gameChicken.chickenJumpParams[0]);
-        window.addEventListener('resize', () => {
-            console.log(window.innerWidth)
-            console.log(window.innerHeight)
-            console.log(screen.width)
-            console.log(screen.height)
-        })
+        document.addEventListener('click', () => {
+            if (gameChicken.chickenVariablePositionY < -10) {
+                gameChicken.jump = -gameChicken.chickenJumpParams[0];
+            } else {
+                gameChicken.jump = gameChicken.chickenJumpParams[0];
+            }
+        });
         gameSetting.texture.addEventListener('load', render);
     }
 }
