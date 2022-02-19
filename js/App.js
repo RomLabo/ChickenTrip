@@ -32,11 +32,37 @@ class App {
                     gameSetting._gameIndex ++;
                     gameBackground.renderBackground();
                     gameChicken.renderChicken();
-                    gameButcher.renderButcher();
-                    gameChicken.jump += gameChicken.chickenJumpParams[1];
-                    
+                    if (gameSetting._gameIndex > 310) {
+                        gameButcher.renderButcher();
+                    }
+                    gameChicken.jump += gameChicken.chickenJumpParams[1];      
             } 
             window.requestAnimationFrame(render);      
+        }
+
+        const testRender = () => {
+            window.setInterval(() => {
+                switch (true) {
+                    case this.startClickEvent === 0:
+                        gameBackground.renderBackground();
+                        break;
+                    case this.startClickEvent >= 1 && this.collision === true:
+                        console.log('Restart');
+                        // Restart game, add currentScore to bestScore
+                        break;
+                    case this.teleportation === true:
+                        console.log('Teleportation');
+                        // Change background and chicken size, difficultyLevel ++, gameSetting._gameIndex = 0;
+                        break;
+                    default:
+                        this.startAnimation.style.zIndex = -5;
+                        gameSetting._gameIndex ++;
+                        gameBackground.renderBackground();
+                        gameChicken.renderChicken();
+                        gameButcher.renderButcher();
+                        gameChicken.jump += gameChicken.chickenJumpParams[1];      
+                } 
+            }, 200)
         }
 
         document.addEventListener('click', () => this.startClickEvent ++);
