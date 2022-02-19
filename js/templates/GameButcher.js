@@ -3,13 +3,13 @@ class GameButcher {
         this.setting = setting;
         this.context = this.setting.context;
         this.canvasSize = this.setting.canvasSize;
-        this.variableGap = 2;
+        this.variableGap = 2; // Ne pas descendre en dessous de 1
 
         this.butcherVariablePositionX = this.canvasSize[0];
-        this.butcherSize = [154, 180];
+        this.butcherSize = [122, 180];
         this.butcherResponsiveSize = [this.canvasSize[0] * .12, this.canvasSize[0] * .15];
         this.butcherPositionY = this.canvasSize[1] * .6;
-        this.butcherSpeedRun = this.setting.difficultyLevel;
+        this.butcherSpeedRun = this.setting.difficultyLevel * 2; // adatper la vitesse en fonction de la vitesse butcherMotion
     }
     createButcher() {
         let butcherMotion = Math.floor((this.setting.gameIndex % 18) / 6) * this.butcherSize[0];
