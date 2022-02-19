@@ -32,9 +32,7 @@ class App {
                     gameSetting._gameIndex ++;
                     gameBackground.renderBackground();
                     gameChicken.renderChicken();
-                    if (gameSetting._gameIndex > 310) {
-                        gameButcher.renderButcher();
-                    }
+                    gameButcher.renderButcher();
                     gameChicken.jump += gameChicken.chickenJumpParams[1];      
             } 
             window.requestAnimationFrame(render);      
@@ -62,7 +60,7 @@ class App {
                         gameButcher.renderButcher();
                         gameChicken.jump += gameChicken.chickenJumpParams[1];      
                 } 
-            }, 200)
+            }, 10)
         }
 
         document.addEventListener('click', () => this.startClickEvent ++);

@@ -14,16 +14,16 @@ class GameChicken {
     }
     createChicken() {
         let chickenMotion = Math.floor((this.setting.gameIndex % 18) / 6) * this.chickenSize[1];
-        let chickenTextureParams = [this.setting.texture, chickenMotion, 552, ...this.chickenSize];
+        let chickenTextureParams = [this.setting.texture, chickenMotion, 553, ...this.chickenSize];
         let chickenCanvasParams = [this.chickenPosition[0], this.chickenVariablePositionY, ...this.chickenResponsiveSize];
         this.context.drawImage(...chickenTextureParams, ...chickenCanvasParams);                  
     }
-    chickenJump() {
+    bringUpChicken() {
         let chickenJumpPosition = this.chickenVariablePositionY + this.jump;
         this.chickenVariablePositionY = chickenJumpPosition > this.chickenPosition[1] ? this.chickenPosition[1] : chickenJumpPosition;
     }
     renderChicken() {
         this.createChicken();
-        this.chickenJump();
+        this.bringUpChicken();
     }
 }
