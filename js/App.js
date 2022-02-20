@@ -7,6 +7,7 @@ class App {
         this.collision = false;
         this.teleportation = false;
         this.startAnimation = document.getElementById('start-animation');
+        this.lostAnimation;
     }
     main() {
         const gameSetting = new GameSetting(this.texture);
@@ -20,7 +21,10 @@ class App {
                     gameBackground.renderBackground();
                     break;
                 case this.startClickEvent >= 1 && this.collision === true:
-                    console.log('Restart');
+                    this.startAnimation.style.zIndex = 2;
+                    gameSetting._gameIndex = 0;
+                    this.startClickEvent = 0;
+                    this.collision = false;
                     // Restart game, add currentScore to bestScore
                     break;
                 case this.teleportation === true:
@@ -33,7 +37,11 @@ class App {
                     gameBackground.renderBackground();
                     gameChicken.renderChicken();
                     gameButcher.renderButcher();
-                    gameChicken.jump += gameChicken.chickenJumpParams[1];      
+                    gameChicken.jump += gameChicken.chickenJumpParams[1]; 
+                    if (gameButcher.butcherVariablePosition <= (gameChicken.chickenPosition[0] + gameChicken.chickenResponsiveSize[0])
+                    && (gameChicken.chickenVariablePositionY + gameChicken.chickenResponsiveSize[1]) >= gameButcher.butcherPositionY) {
+                        this.collision = true;
+                    }     
             } 
             window.requestAnimationFrame(render);      
         }
@@ -45,6 +53,11 @@ class App {
                         gameBackground.renderBackground();
                         break;
                     case this.startClickEvent >= 1 && this.collision === true:
+                        gameBackground.renderBackground();
+                        this.startAnimation.style.zIndex = 2;
+                        gameSetting._gameIndex = 0;
+                        this.startClickEvent = 0;
+                        this.collision = false;
                         console.log('Restart');
                         // Restart game, add currentScore to bestScore
                         break;
@@ -58,9 +71,13 @@ class App {
                         gameBackground.renderBackground();
                         gameChicken.renderChicken();
                         gameButcher.renderButcher();
-                        gameChicken.jump += gameChicken.chickenJumpParams[1];      
+                        gameChicken.jump += gameChicken.chickenJumpParams[1]; 
+                        if (gameButcher.butcherVariablePosition <= (gameChicken.chickenPosition[0] + gameChicken.chickenResponsiveSize[0])
+                        && (gameChicken.chickenVariablePositionY + gameChicken.chickenResponsiveSize[1]) >= gameButcher.butcherPositionY) {
+                            this.collision = true;
+                        }      
                 } 
-            }, 10)
+            }, 100)
         }
 
         document.addEventListener('click', () => this.startClickEvent ++);

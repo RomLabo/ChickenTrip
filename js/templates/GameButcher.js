@@ -11,6 +11,10 @@ class GameButcher {
         this.butcherPositionY = this.canvasSize[1] * .6;
         this.butcherSpeedRun = this.setting.difficultyLevel * 2; // adatper la vitesse en fonction de la vitesse butcherMotion
     }
+    get butcherVariablePosition() {
+        let motionX = (this.setting.gameIndex * this.butcherSpeedRun) % (this.variableGap * this.canvasSize[0]);
+        return -motionX + (this.variableGap * this.canvasSize[0])
+    }
     createButcher() {
         let butcherMotion = Math.floor((this.setting.gameIndex % 18) / 6) * this.butcherSize[0];
         let butcherMotionX = (this.setting.gameIndex * this.butcherSpeedRun) % (this.variableGap * this.canvasSize[0]);
