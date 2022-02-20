@@ -4,16 +4,13 @@ class GameButcher {
         this.context = this.setting.context;
         this.canvasSize = this.setting.canvasSize;
         this.variableGap = 2; // Ne pas descendre en dessous de 1
+        this.crash = false;
 
         this.butcherVariablePositionX = this.canvasSize[0];
         this.butcherSize = [122, 180];
         this.butcherResponsiveSize = [this.canvasSize[0] * .12, this.canvasSize[0] * .15];
         this.butcherPositionY = this.canvasSize[1] * .6;
         this.butcherSpeedRun = this.setting.difficultyLevel * 2; // adatper la vitesse en fonction de la vitesse butcherMotion
-    }
-    get butcherVariablePosition() {
-        let motionX = (this.setting.gameIndex * this.butcherSpeedRun) % (this.variableGap * this.canvasSize[0]);
-        return -motionX + (this.variableGap * this.canvasSize[0])
     }
     createButcher() {
         let butcherMotion = Math.floor((this.setting.gameIndex % 18) / 6) * this.butcherSize[0];
@@ -26,10 +23,15 @@ class GameButcher {
         this.context.drawImage(...butcherTextureParams, ...butcherCanvasFirstParams);
         this.context.drawImage(...butcherTextureParams, ...butcherCanvasSecondParams);
     }
-    accelerateButcher() {
-        this.butcherSpeedRun += .2;
+    crashButcher(chickenPostion) {
+        let butcherMotionX = (this.setting.gameIndex * this.butcherSpeedRun) % (this.variableGap * this.canvasSize[0]);
+        let butcherVariablePosition = -butcherMotionX + (this.variableGap * this.canvasSize[0]);
+        if (butcherVariablePosition <= chickenPostion[0] && chickenPostion[1] >= this.butcherPositionY) {
+            this.crash = true;
+        }
     }
-    renderButcher() {
+    renderButcher(chickenPosition) {
         this.createButcher();
+        this.crashButcher(chickenPosition);
     }
 }

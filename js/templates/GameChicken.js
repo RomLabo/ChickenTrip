@@ -12,6 +12,9 @@ class GameChicken {
         this.chickenJumpParams = [-this.canvasSize[1] * .03, this.canvasSize[1] * .001];
         this.jump;
     }
+    get crashChicken() {
+        return [this.chickenPosition[0] + this.chickenResponsiveSize[0], this.chickenVariablePositionY + this.chickenResponsiveSize[1]]
+    }
     createChicken() {
         let chickenMotion = Math.floor((this.setting.gameIndex % 18) / 6) * this.chickenSize[1];
         let chickenTextureParams = [this.setting.texture, chickenMotion, 553, ...this.chickenSize];

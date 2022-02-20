@@ -4,7 +4,6 @@ class App {
         this.texture.src = './textures/wood.png';
 
         this.startClickEvent = 0;
-        this.collision = false;
         this.teleportation = false;
         this.startAnimation = document.getElementById('start-animation');
         this.lostAnimation;
@@ -16,15 +15,18 @@ class App {
         const gameButcher = new GameButcher(gameSetting);
         
         const render = () => {
+            let allCrash = [gameButcher.crash, false, false];
+            let thereIsACrash = allCrash.some((element) => element === true);
+            let indexOfCrash = allCrash.indexOf(true);
             switch (true) {
                 case this.startClickEvent === 0:
                     gameBackground.renderBackground();
                     break;
-                case this.startClickEvent >= 1 && this.collision === true:
+                case this.startClickEvent >= 1 && thereIsACrash === true:
                     this.startAnimation.style.zIndex = 2;
                     gameSetting._gameIndex = 0;
                     this.startClickEvent = 0;
-                    this.collision = false;
+                    gameButcher.crash = false;
                     // Restart game, add currentScore to bestScore
                     break;
                 case this.teleportation === true:
@@ -36,12 +38,8 @@ class App {
                     gameSetting._gameIndex ++;
                     gameBackground.renderBackground();
                     gameChicken.renderChicken();
-                    gameButcher.renderButcher();
-                    gameChicken.jump += gameChicken.chickenJumpParams[1]; 
-                    if (gameButcher.butcherVariablePosition <= (gameChicken.chickenPosition[0] + gameChicken.chickenResponsiveSize[0])
-                    && (gameChicken.chickenVariablePositionY + gameChicken.chickenResponsiveSize[1]) >= gameButcher.butcherPositionY) {
-                        this.collision = true;
-                    }     
+                    gameButcher.renderButcher(gameChicken.crashChicken);
+                    gameChicken.jump += gameChicken.chickenJumpParams[1];     
             } 
             window.requestAnimationFrame(render);      
         }
