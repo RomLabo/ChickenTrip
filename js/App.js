@@ -12,24 +12,24 @@ class App {
         const settingBackground = new SettingBackground(settingGame);
         const settingChicken = new SettingChicken(settingGame);
         const settingButcher = new SettingButcher(settingGame);
+        
         const gameBackground = new GameBackgound(settingBackground);
         const gameChicken = new GameChicken(settingChicken);
         const gameButcher = new GameButcher(settingButcher);
         
+        const allCrash = [gameButcher];
+        
         const render = () => {
-            let allCrash = [gameButcher.crash, false, false];
-            let thereIsACrash = allCrash.some((element) => element === true);
-            let indexOfCrash = allCrash.indexOf(true);
-
+            let indexOfCrash = allCrash.findIndex((element) => element.crash === true);
             switch (true) {
                 case this.startClickEvent === 0:
                     gameBackground.renderBackground();
                     break;
-                case this.startClickEvent >= 1 && thereIsACrash === true:
+                case this.startClickEvent >= 1 && indexOfCrash !== -1:
                     this.startAnimation.style.zIndex = 2;
                     settingGame._gameIndex = 0;
+                    allCrash[indexOfCrash].crash = false;
                     this.startClickEvent = 0;
-                    gameButcher.crash = false;
                     // Restart game, add currentScore to bestScore
                     break;
                 case this.teleportation === true:
@@ -45,7 +45,6 @@ class App {
             } 
             window.requestAnimationFrame(render);      
         }
-
         document.addEventListener('click', () => this.startClickEvent ++);
         document.addEventListener('click', () => gameChicken.bringUpChicken());
         settingGame.texture.addEventListener('load', render);

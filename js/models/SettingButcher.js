@@ -13,7 +13,7 @@ class SettingButcher {
         return this._setting.context;
     }
     get textureParams() {
-        let motion = Math.floor((this._setting._gameIndex % 18) / 6) * this._size[0];
+        let motion = Math.floor((this._setting._gameIndex % 15) / 5) * this._size[0];
         return [this._setting.texture, motion, 617, ...this._size];
     }
     get positionY() {
