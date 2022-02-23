@@ -1,14 +1,14 @@
 class GameBackgound {
-    constructor(setting) {
-        this.setting = setting;
+    constructor(setup) {
+        this.setup = setup;
     }
     createBackgroundDecoration() {
-        this.setting.context.drawImage(...this.setting.decorationTextureParams, ...this.setting.decorationCanvasFirstParams);
-        this.setting.context.drawImage(...this.setting.decorationTextureParams, ...this.setting.decorationCanvasSecondParams);
+        this.setup.context.drawImage(...this.setup.decorationTextureParams, ...this.setup.decorationCanvasFirstParams);
+        this.setup.context.drawImage(...this.setup.decorationTextureParams, ...this.setup.decorationCanvasSecondParams);
     }
     createBackgroundFloor() {
-        this.setting.context.drawImage(...this.setting.floorTextureParams, ...this.setting.floorCanvasFirstParams);
-        this.setting.context.drawImage(...this.setting.floorTextureParams, ...this.setting.floorCanvasSecondParams);
+        this.setup.context.drawImage(...this.setup.floorTextureParams, ...this.setup.floorCanvasFirstParams);
+        this.setup.context.drawImage(...this.setup.floorTextureParams, ...this.setup.floorCanvasSecondParams);
     }
     renderBackground() {
         this.createBackgroundDecoration();

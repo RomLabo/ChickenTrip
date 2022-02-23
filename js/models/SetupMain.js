@@ -1,4 +1,4 @@
-class SettingGame {
+class SetupMain {
     constructor(texture) {
         this._texture = texture;
         this._canvas = document.getElementById('canvas');
@@ -6,6 +6,8 @@ class SettingGame {
         this._canvas.width = window.innerWidth;
         this._canvas.height = window.innerHeight;
         this._gameIndex = 0;
+        this._gameState = 'game start';
+        this._animation = [document.getElementById('start-animation'), document.getElementById('restart')];
     }
     get texture() {
         return this._texture;
@@ -21,5 +23,11 @@ class SettingGame {
     }
     get canvasSize() {
         return [this._canvas.width, this._canvas.height];
+    }
+    get gameState() {
+        return this._gameState;
+    }
+    get animation() {
+        return this._animation;
     }
 }

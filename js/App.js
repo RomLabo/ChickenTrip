@@ -2,52 +2,49 @@ class App {
     constructor() {
         this.texture = new Image();
         this.texture.src = './textures/wood.png';
-        this.startClickEvent = 0;
-        this.teleportation = false;
-        this.startAnimation = document.getElementById('start-animation');
-        this.lostAnimation;
+        
+        this.setupMain = new SetupMain(this.texture);
+        this.setupBackground = new SetupBackground(this.setupMain);
+        this.setupChicken = new SetupChicken(this.setupMain);
+        this.setupButcher = new SetupButcher(this.setupMain);
     }
     main() {
-        const settingGame = new SettingGame(this.texture);
-        const settingBackground = new SettingBackground(settingGame);
-        const settingChicken = new SettingChicken(settingGame);
-        const settingButcher = new SettingButcher(settingGame);
-        
-        const gameBackground = new GameBackgound(settingBackground);
-        const gameChicken = new GameChicken(settingChicken);
-        const gameButcher = new GameButcher(settingButcher);
-        
+        const gameMain = new GameMain(this.setupMain);
+        const gameBackground = new GameBackgound(this.setupBackground);
+        const gameChicken = new GameChicken(this.setupChicken);
+        const gameButcher = new GameButcher(this.setupButcher);
         const allCrash = [gameButcher];
         
         const render = () => {
-            let indexOfCrash = allCrash.findIndex((element) => element.crash === true);
-            switch (true) {
-                case this.startClickEvent === 0:
+            switch (this.setupMain.gameState) {
+                case 'game start':
                     gameBackground.renderBackground();
                     break;
-                case this.startClickEvent >= 1 && indexOfCrash !== -1:
-                    this.startAnimation.style.zIndex = 2;
-                    settingGame._gameIndex = 0;
-                    allCrash[indexOfCrash].crash = false;
-                    this.startClickEvent = 0;
-                    // Restart game, add currentScore to bestScore
+                case 'game stop':
+                    gameMain.displayAnimation();
+                    this.setupMain._gameIndex = 0;
+                    // add currentScore to bestScore
                     break;
-                case this.teleportation === true:
-                    console.log('Teleportation');
-                    // Change background and chicken size, difficultyLevel ++, settingGame._gameIndex = 0;
-                    break;
-                default:
-                    this.startAnimation.style.zIndex = -5;
-                    settingGame._gameIndex ++;
+                case 'game in progress':
+                    this.setupMain._gameIndex ++;
                     gameBackground.renderBackground();
                     gameChicken.renderChicken();
-                    gameButcher.renderButcher(gameChicken.crashPosition);   
+                    gameButcher.renderButcher(gameChicken.crashPosition); 
+                    gameMain.displayAnimation();
+                    gameMain.detectCrash(allCrash);
+                    break;
+                default:
+                    console.log('une erreur est survenue'); 
+                    // add error content
             } 
             window.requestAnimationFrame(render);      
         }
-        document.addEventListener('click', () => this.startClickEvent ++);
-        document.addEventListener('click', () => gameChicken.bringUpChicken());
-        settingGame.texture.addEventListener('load', render);
+
+        document.addEventListener('click', () => {
+            this.setupMain._gameState = 'game in progress';
+            gameChicken.bringUpChicken();
+        })
+        this.setupMain.texture.addEventListener('load', render);
     }
 }
 const app = new App();

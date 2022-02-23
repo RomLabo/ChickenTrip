@@ -1,14 +1,14 @@
 class GameButcher {
-    constructor(setting) {
-        this.setting = setting;
+    constructor(setup) {
+        this.setup = setup;
         this.crash = false;
     }
     createButcher() {
-        this.setting.context.drawImage(...this.setting.textureParams, ...this.setting.firstCanvasParams);
-        this.setting.context.drawImage(...this.setting.textureParams, ...this.setting.secondCanvasParams);
+        this.setup.context.drawImage(...this.setup.textureParams, ...this.setup.firstCanvasParams);
+        this.setup.context.drawImage(...this.setup.textureParams, ...this.setup.secondCanvasParams);
     }
     crashButcher(chickenPostion) {
-        if (this.setting.secondCanvasParams[0] <= chickenPostion[0] && chickenPostion[1] >= this.setting.positionY) {
+        if (this.setup.secondCanvasParams[0] <= chickenPostion[0] && chickenPostion[1] >= this.setup.positionY) {
             this.crash = true;
         }
     }

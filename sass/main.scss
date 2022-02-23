@@ -36,7 +36,7 @@ body {
         overflow: hidden;
         font-size: 3rem;
         overflow: inherit;
-        animation: 400ms cubic-bezier(.35,.3,.32,.99) 100ms 20 alternate move;
+        animation: 400ms cubic-bezier(.35,.3,.32,.99) 100ms 10 alternate move;
         @for $i from 1 through 12 {
             &--#{$i} {
                 animation-delay: 50ms * $i;
@@ -44,6 +44,16 @@ body {
         }
     }
 }
+
+#restart {
+    display: none;
+    color: #b87623;
+    text-shadow: 3px 3px 3px black;
+    overflow: hidden;
+    font-size: 3rem;
+    overflow: inherit;    
+}
+
 @keyframes move {
     0% {
         transform: translateY(0);
