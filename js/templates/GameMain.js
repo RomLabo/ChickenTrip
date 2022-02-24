@@ -3,6 +3,9 @@ class GameMain {
         this.setup = setup;
         this.animation = setup.animation;
     }
+    clearContext() {
+        this.setup._context.clearRect(0, 0, ...this.setup.canvasSize);
+    }
     detectCrash(arrayOfCharacter) {
         let indexOfCrash = arrayOfCharacter.findIndex((element) => element.crash === true);
         if (indexOfCrash !== -1) {

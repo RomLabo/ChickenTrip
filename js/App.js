@@ -27,6 +27,7 @@ class App {
                     break;
                 case 'game in progress':
                     this.setupMain._gameIndex ++;
+                    gameMain.clearContext();
                     gameBackground.renderBackground();
                     gameChicken.renderChicken();
                     gameButcher.renderButcher(gameChicken.crashPosition); 
