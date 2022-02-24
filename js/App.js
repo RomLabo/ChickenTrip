@@ -2,6 +2,7 @@ class App {
     constructor() {
         this.texture = new Image();
         this.texture.src = './textures/wood.png';
+        this.renderingInProgress = false;
         
         this.setupMain = new SetupMain(this.texture);
         this.setupBackground = new SetupBackground(this.setupMain);
@@ -14,8 +15,9 @@ class App {
         const gameChicken = new GameChicken(this.setupChicken);
         const gameButcher = new GameButcher(this.setupButcher);
         const allCrash = [gameButcher];
-        
+
         const render = () => {
+            this.renderingInProgress = false;
             switch (this.setupMain.gameState) {
                 case 'game start':
                     gameBackground.renderBackground();
@@ -38,7 +40,10 @@ class App {
                     console.log('une erreur est survenue'); 
                     // add error content
             } 
-            window.requestAnimationFrame(render);      
+            if (!this.renderingInProgress) {
+                this.renderingInProgress = true;
+                window.requestAnimationFrame(render);
+            }      
         }
 
         document.addEventListener('click', () => {
