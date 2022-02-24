@@ -15,9 +15,11 @@ class GameMain {
     }
     displayAnimation() {
         this.animation[0].style.zIndex = -5;
+        this.animation[0].style.opacity = 0;
         if (this.setup._gameState === 'game stop') {
             this.animation[1].style.display = 'flex';
             this.animation[0].style.zIndex = 2;
+            this.animation[0].style.opacity = 1;
         } 
     }
 }

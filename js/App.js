@@ -15,7 +15,7 @@ class App {
         const gameChicken = new GameChicken(this.setupChicken);
         const gameButcher = new GameButcher(this.setupButcher);
         const allCrash = [gameButcher];
-
+        
         const render = () => {
             this.renderingInProgress = false;
             switch (this.setupMain.gameState) {
@@ -50,8 +50,11 @@ class App {
             this.setupMain._gameState = 'game in progress';
             gameChicken.bringUpChicken();
         })
-        this.setupMain.texture.addEventListener('load', render);
+
+        render();
+        controller.abort();
     }
 }
 const app = new App();
-app.main();
+const controller = new AbortController();
+app.texture.addEventListener('load', () => app.main(), { signal: controller.signal });
