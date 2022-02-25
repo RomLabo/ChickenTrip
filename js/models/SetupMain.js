@@ -6,7 +6,7 @@ class SetupMain {
         this._canvas.width = window.innerWidth;
         this._canvas.height = window.innerHeight;
         this._gameIndex = 0;
-        this._gameState = 'game start';
+        this._gameState = 'stop';
         this._animation = [document.getElementById('start-animation'), document.getElementById('restart')];
     }
     get texture() {
