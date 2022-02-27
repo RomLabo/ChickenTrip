@@ -14,9 +14,7 @@ class GameMain {
     changeState() {
         if (this.setup.gameState === 'stop') {
             this.setup._gameState = 'in progress';
-        } else {
-            return true;
-        }
+        } 
     }
     displayAnimation() {
         this.animation[0].style.zIndex = -5;
@@ -34,9 +32,9 @@ class GameMain {
             this.setup._gameState = 'stop';
         }
     }
-    render() {
-        this.incrementIndex();
-        this.clearContext();
+    render(arrayOfCharacter) {
+        this.detectCrash(arrayOfCharacter)
         this.displayAnimation();
+        this.incrementIndex();
     }
 }

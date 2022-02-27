@@ -5,21 +5,21 @@ class GameChicken {
         this.position;
         this.jump = 0;
     }
-    createChicken() {
+    drawCharacter() {
         let canvasParams = [this.setup.position[0], this.variablePositionY, ...this.setup.responsiveSize];
         this.setup.context.drawImage(...this.setup.textureParams, ...canvasParams);                  
     }
-    updateChickenPosition() { 
+    updatePosition() { 
         let jumpPosition = this.variablePositionY + this.jump;
         this.position = [this.setup.crashParams[0], this.setup.crashParams[1] + this.variablePositionY];
         this.variablePositionY = Math.min(jumpPosition, this.setup.position[1]);
         this.jump += this.setup.jumpParams[1];
     }
-    bringUpChicken() {
+    bringUp() {
         this.jump = Math.sign(this.variablePositionY) * this.setup.jumpParams[0];
     }
-    renderChicken() {
-        this.createChicken();
-        this.updateChickenPosition();
+    render() {
+        this.drawCharacter();
+        this.updatePosition();
     }
 }

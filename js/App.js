@@ -8,34 +8,34 @@ class App {
         this.setupChicken = new SetupChicken(this.setupMain);
         this.setupButcher = new SetupButcher(this.setupMain);
 
-        this.gameMain = new GameMain(this.setupMain);
-        this.gameBackground = new GameBackgound(this.setupBackground);
-        this.gameChicken = new GameChicken(this.setupChicken);
-        this.gameButcher = new GameButcher(this.setupButcher);
-
         this.renderingInProgress = false;
         this.currentScore = document.getElementById('current-score');
+        this.currentScore.textContent = 0;
         this.requestAnimation;
     }
     main() {
-        const allCrash = [this.gameButcher];
-        this.gameBackground.renderBackground();
-        this.currentScore.textContent = 0;
+        const gameMain = new GameMain(this.setupMain);
+        const gameBackground = new GameBackgound(this.setupBackground);
+        const gameChicken = new GameChicken(this.setupChicken);
+        const gameButcher = new GameButcher(this.setupButcher);
+
+        const allCrash = [gameButcher];
+        gameBackground.render();
 
         const render = () => {
+            gameMain.clearContext();
+            gameBackground.render();
+            gameChicken.render();
+            gameButcher.render(gameChicken.position); 
+            gameMain.render(allCrash);
+            this.currentScore.textContent = gameButcher.count;
             this.renderingInProgress = false;
-            this.gameMain.render();
-            this.gameBackground.renderBackground();
-            this.gameChicken.renderChicken();
-            this.gameButcher.renderButcher(this.gameChicken.position); 
-            this.gameMain.detectCrash(allCrash);
-            this.currentScore.textContent = this.gameButcher.count;
+
             if (!this.renderingInProgress) {
                 this.renderingInProgress = true;
                 this.requestAnimation = requestAnimationFrame(render);
-            } 
+            }
             if (this.setupMain.gameState === 'stop') {
-                this.gameMain.render();
                 cancelAnimationFrame(this.requestAnimation);
             }   
         }
@@ -43,9 +43,9 @@ class App {
         document.addEventListener('click', () => {
             if (this.setupMain.gameState === 'stop') {
                 this.requestAnimation = requestAnimationFrame(render);
+                gameMain.changeState();
             }
-            this.gameMain.changeState();
-            this.gameChicken.bringUpChicken();
+            gameChicken.bringUp();
         })
         imageIsLoaded.abort();
     }

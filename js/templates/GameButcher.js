@@ -4,10 +4,10 @@ class GameButcher {
         this.crash = false;
         this.count = 0;
     }
-    createButcher() {
+    drawCharacter() {
         this.setup.context.drawImage(...this.setup.textureParams, ...this.setup.firstCanvasParams);
     }
-    crashButcher(chickenPostion) {
+    detectCrash(chickenPostion) {
         if (this.setup.firstCanvasParams[0] <= chickenPostion[0] 
             && this.setup.firstCanvasParams[0] >= this.setup.crashMinPositionX 
             && chickenPostion[1] >= this.setup.positionY) {
@@ -17,8 +17,8 @@ class GameButcher {
             this.count ++;
         }
     }
-    renderButcher(chickenPosition) {
-        this.createButcher();
-        this.crashButcher(chickenPosition);
+    render(chickenPosition) {
+        this.drawCharacter();
+        this.detectCrash(chickenPosition);
     }
 }
