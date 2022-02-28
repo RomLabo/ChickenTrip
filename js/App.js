@@ -8,7 +8,6 @@ class App {
         this.setupChicken = new SetupChicken(this.setupMain);
         this.setupButcher = new SetupButcher(this.setupMain);
 
-        this.renderingInProgress = false;
         this.currentScore = document.getElementById('current-score');
         this.currentScore.textContent = 0;
         this.requestAnimation;
@@ -18,9 +17,7 @@ class App {
         const gameBackground = new GameBackgound(this.setupBackground);
         const gameChicken = new GameChicken(this.setupChicken);
         const gameButcher = new GameButcher(this.setupButcher);
-
         const allCrash = [gameButcher];
-        gameBackground.render();
 
         const render = () => {
             gameMain.clearContext();
@@ -29,24 +26,22 @@ class App {
             gameButcher.render(gameChicken.position); 
             gameMain.render(allCrash);
             this.currentScore.textContent = gameButcher.count;
-            this.renderingInProgress = false;
+            this.requestAnimation = requestAnimationFrame(render);
 
-            if (!this.renderingInProgress) {
-                this.renderingInProgress = true;
-                this.requestAnimation = requestAnimationFrame(render);
-            }
-            if (this.setupMain.gameState === 'stop') {
+            if (this.setupMain.gameInProgess === false) {
                 cancelAnimationFrame(this.requestAnimation);
             }   
         }
         
         document.addEventListener('click', () => {
-            if (this.setupMain.gameState === 'stop') {
+            if (this.setupMain.gameInProgess === false) {
                 this.requestAnimation = requestAnimationFrame(render);
-                gameMain.changeState();
+                this.setupMain._gameInProgess = true;
             }
             gameChicken.bringUp();
         })
+
+        gameBackground.render();
         imageIsLoaded.abort();
     }
 }

@@ -2,8 +2,8 @@ class SetupButcher {
     constructor(setup) {
         this._setup = setup;
         this._size = [122, 180];
-        this._responsiveSize = [setup.canvasSize[0] * .12, setup.canvasSize[0] * .15];
-        this._positionY = setup.canvasSize[1] * .6;
+        this._responsiveSize = [Math.round(setup.canvasSize[0] * .12), Math.round(setup.canvasSize[0] * .15)];
+        this._positionY = Math.round(setup.canvasSize[1] * .6);
         this._speedRun = setup.difficultyLevel * 2;
         this._variableGap = 2;
     }

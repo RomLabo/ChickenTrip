@@ -61,15 +61,6 @@ body {
     }
 }
 
-#restart {
-    display: none;
-    color: #b87623;
-    text-shadow: 3px 3px 3px black;
-    overflow: hidden;
-    font-size: 3rem;
-    overflow: inherit;    
-}
-
 @keyframes move {
     0% {
         transform: translateY(0);

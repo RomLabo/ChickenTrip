@@ -6,8 +6,8 @@ class SetupMain {
         this._canvas.width = window.innerWidth;
         this._canvas.height = window.innerHeight;
         this._gameIndex = 0;
-        this._gameState = 'stop';
-        this._animation = [document.getElementById('start-animation'), document.getElementById('restart')];
+        this._gameInProgess = false;
+        this._animation = document.getElementById('start-animation');
     }
     get texture() {
         return this._texture;
@@ -24,8 +24,8 @@ class SetupMain {
     get canvasSize() {
         return [this._canvas.width, this._canvas.height];
     }
-    get gameState() {
-        return this._gameState;
+    get gameInProgess() {
+        return this._gameInProgess;
     }
     get animation() {
         return this._animation;

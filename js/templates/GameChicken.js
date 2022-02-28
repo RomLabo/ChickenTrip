@@ -6,7 +6,7 @@ class GameChicken {
         this.jump = 0;
     }
     drawCharacter() {
-        let canvasParams = [this.setup.position[0], this.variablePositionY, ...this.setup.responsiveSize];
+        let canvasParams = [this.setup.position[0], Math.round(this.variablePositionY), ...this.setup.responsiveSize];
         this.setup.context.drawImage(...this.setup.textureParams, ...canvasParams);                  
     }
     updatePosition() { 

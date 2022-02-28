@@ -3,34 +3,21 @@ class GameMain {
         this.setup = setup;
         this.animation = setup.animation;
     }
-    incrementIndex() {
-        this.setup.gameState === 'stop' ? this.setup._gameIndex = 0 : this.setup._gameIndex ++;
-    }
     clearContext() {
-        if (this.setup.gameState === 'in progress') {
-            this.setup._context.clearRect(0, 0, ...this.setup.canvasSize);
-        }
-    }
-    changeState() {
-        if (this.setup.gameState === 'stop') {
-            this.setup._gameState = 'in progress';
-        } 
-    }
-    displayAnimation() {
-        this.animation[0].style.zIndex = -5;
-        this.animation[0].style.opacity = 0;
-        if (this.setup.gameState === 'stop') {
-            this.animation[1].style.display = 'flex';
-            this.animation[0].style.zIndex = 2;
-            this.animation[0].style.opacity = 1;
-        } 
+        this.setup._context.clearRect(0, 0, ...this.setup.canvasSize);
     }
     detectCrash(arrayOfCharacter) {
-        let indexOfCrash = arrayOfCharacter.findIndex((element) => element.crash === true);
+        let indexOfCrash = arrayOfCharacter.findIndex((element) => element.isCrash === true);
         if (indexOfCrash !== -1) {
-            arrayOfCharacter[indexOfCrash].crash = false;
-            this.setup._gameState = 'stop';
+            arrayOfCharacter[indexOfCrash].isCrash = false;
+            this.setup._gameInProgess = false;
         }
+    }
+    displayAnimation() {
+        this.setup.gameInProgess === false ? this.animation.style.opacity = 1 : this.animation.style.opacity = 0;
+    }
+    incrementIndex() {
+        this.setup.gameInProgess === false ? this.setup._gameIndex = 0 : this.setup._gameIndex ++;
     }
     render(arrayOfCharacter) {
         this.detectCrash(arrayOfCharacter)
