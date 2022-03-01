@@ -20,7 +20,7 @@ class SetupButcher {
     get crashMinPositionX() {
         return this._setup.canvasSize[0] * .04 | 0;
     }
-    get firstCanvasParams() {
+    get canvasParams() {
         let variableX = (this._setup._gameIndex * this._speedRun) % ((this._variableGap + 1) * this._setup.canvasSize[0]);
         return [-variableX + (this._variableGap * this._setup.canvasSize[0]), this._positionY, ...this._responsiveSize];
     }
