@@ -2,8 +2,8 @@ class SetupButcher {
     constructor(setup) {
         this._setup = setup;
         this._size = [122, 180];
-        this._responsiveSize = [Math.round(setup.canvasSize[0] * .12), Math.round(setup.canvasSize[0] * .15)];
-        this._positionY = Math.round(setup.canvasSize[1] * .6);
+        this._responsiveSize = [setup.canvasSize[0] * .12 | 0, setup.canvasSize[0] * .15 | 0];
+        this._positionY = setup.canvasSize[1] * .6 | 0;
         this._speedRun = setup.difficultyLevel * 2;
         this._variableGap = 2;
     }
@@ -18,7 +18,7 @@ class SetupButcher {
         return this._positionY;
     }
     get crashMinPositionX() {
-        return this._setup.canvasSize[0] * .04;
+        return this._setup.canvasSize[0] * .04 | 0;
     }
     get firstCanvasParams() {
         let variableX = (this._setup._gameIndex * this._speedRun) % ((this._variableGap + 1) * this._setup.canvasSize[0]);

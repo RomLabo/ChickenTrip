@@ -2,8 +2,8 @@ class SetupChicken {
     constructor(setup) {
         this._setup = setup;
         this._size = [65, 65];
-        this._responsiveSize = [Math.round(setup.canvasSize[0] * .07), Math.round(setup.canvasSize[0] * .07)];
-        this._position = [Math.round(setup.canvasSize[0] * .04), Math.round(setup.canvasSize[1] * .77)];
+        this._responsiveSize = [setup.canvasSize[0] * .07 | 0, setup.canvasSize[0] * .07 | 0];
+        this._position = [setup.canvasSize[0] * .04 | 0, setup.canvasSize[1] * .77 | 0];
     }
     get context() {
         return this._setup.context;

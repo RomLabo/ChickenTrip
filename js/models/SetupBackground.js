@@ -3,7 +3,8 @@ class SetupBackground {
         this._setup = setup;
         this._decorationSize = [768, 432];
         this._floorSize = [768, 120];
-        this._floorResponsiveSize = [setup.canvasSize[0], Math.round(setup.canvasSize[1] * .25)];
+        this._floorResponsiveSize = [setup.canvasSize[0], setup.canvasSize[1] * .25 | 0];
+        this._floorPositionY = this._setup.canvasSize[1] * .75 | 0;
     }
     get context() {
         return this._setup.context;
@@ -24,10 +25,10 @@ class SetupBackground {
     }
     get floorCanvasFirstParams() {
         let floorMotion = (this._setup.gameIndex * this._setup.difficultyLevel) % this._setup.canvasSize[0];
-        return [-floorMotion, Math.round(this._setup.canvasSize[1] * .75), ...this._floorResponsiveSize];
+        return [-floorMotion, this._floorPositionY, ...this._floorResponsiveSize];
     }
     get floorCanvasSecondParams() {
         let floorMotion = (this._setup.gameIndex * this._setup.difficultyLevel) % this._setup.canvasSize[0];
-        return [-floorMotion + this._setup.canvasSize[0], Math.round(this._setup.canvasSize[1] * .75), ...this._floorResponsiveSize];
+        return [-floorMotion + this._setup.canvasSize[0], this._floorPositionY, ...this._floorResponsiveSize];
     }
 }
