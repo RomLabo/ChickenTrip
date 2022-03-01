@@ -6,7 +6,7 @@ class App {
         this.setupMain = new SetupMain(this.texture);
         this.setupBackground = new SetupBackground(this.setupMain);
         this.setupChicken = new SetupChicken(this.setupMain);
-        this.setupButcher = new SetupButcher(this.setupMain);
+        this.setupEnemies = new SetupEnemies(this.setupMain);
 
         this.currentScore = document.getElementById('current-score');
         this.currentScore.textContent = 0;
@@ -16,16 +16,15 @@ class App {
         const gameMain = new GameMain(this.setupMain);
         const gameBackground = new GameBackgound(this.setupBackground);
         const gameChicken = new GameChicken(this.setupChicken);
-        const gameButcher = new GameButcher(this.setupButcher);
-        const allCrash = [gameButcher];
+        const gameEnemies = new GameEnemies(this.setupEnemies);
 
         const render = () => {
             gameMain.clearContext();
             gameBackground.render();
             gameChicken.render();
-            gameButcher.render(gameChicken.position); 
-            gameMain.render(allCrash);
-            this.currentScore.textContent = gameButcher.count;
+            gameEnemies.render(gameChicken.crashPosition); 
+            gameMain.render(gameEnemies);
+            this.currentScore.textContent = gameEnemies.scorePoints;
             this.requestAnimation = requestAnimationFrame(render);
 
             if (this.setupMain.gameInProgess === false) {

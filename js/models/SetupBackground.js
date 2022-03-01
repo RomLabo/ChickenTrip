@@ -5,6 +5,7 @@ class SetupBackground {
         this._floorSize = [768, 120];
         this._floorResponsiveSize = [setup.canvasSize[0], setup.canvasSize[1] * .25 | 0];
         this._floorPositionY = this._setup.canvasSize[1] * .77 | 0;
+        this._floorSpeed = Math.round(this._setup.canvasSize[0] * .003);
     }
     get context() {
         return this._setup.context;
@@ -24,11 +25,11 @@ class SetupBackground {
         return [this._setup.texture, 0, 432, ...this._floorSize]
     }
     get floorCanvasFirstParams() {
-        let floorMotion = (this._setup.gameIndex * this._setup.difficultyLevel) % this._setup.canvasSize[0];
+        let floorMotion = (this._setup.gameIndex * this._floorSpeed) % this._setup.canvasSize[0];
         return [-floorMotion, this._floorPositionY, ...this._floorResponsiveSize];
     }
     get floorCanvasSecondParams() {
-        let floorMotion = (this._setup.gameIndex * this._setup.difficultyLevel) % this._setup.canvasSize[0];
+        let floorMotion = (this._setup.gameIndex * this._floorSpeed) % this._setup.canvasSize[0];
         return [-floorMotion + this._setup.canvasSize[0], this._floorPositionY, ...this._floorResponsiveSize];
     }
 }

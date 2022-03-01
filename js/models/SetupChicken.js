@@ -21,7 +21,4 @@ class SetupChicken {
     get jumpParams() {
         return [-this._setup.canvasSize[1] * .03, this._setup.canvasSize[1] * .001];
     }
-    get crashParams() {
-        return [this._position[0] + this._responsiveSize[0], this._responsiveSize[1]];
-    }
 }

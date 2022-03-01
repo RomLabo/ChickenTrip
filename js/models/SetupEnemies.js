@@ -1,4 +1,4 @@
-class SetupButcher {
+class SetupEnemies {
     constructor(setup) {
         this._setup = setup;
         this._size = [122, 180];
@@ -17,8 +17,8 @@ class SetupButcher {
     get positionY() {
         return this._positionY;
     }
-    get crashMinPositionX() {
-        return this._setup.canvasSize[0] * .04 | 0;
+    get positionToScorePoints() {
+        return (this._variableGap * this._setup.canvasSize[0]) % this._speedRun;
     }
     get canvasParams() {
         let variableX = (this._setup._gameIndex * this._speedRun) % ((this._variableGap + 1) * this._setup.canvasSize[0]);
