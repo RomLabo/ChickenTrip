@@ -1,5 +1,5 @@
 {
-  "name": "chicken-s_trip",
+  "name": "chicken_trip",
   "version": "1.0.0",
   "description": "",
   "main": "App.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RomLabo/Chicken-s_Trip.git"
+    "url": "git+https://github.com/RomLabo/ChickenTrip.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RomLabo/Chicken-s_Trip/issues"
+    "url": "https://github.com/RomLabo/ChickenTrip/issues"
   },
-  "homepage": "https://github.com/RomLabo/Chicken-s_Trip#readme",
+  "homepage": "https://github.com/RomLabo/ChickenTrip#readme",
   "dependencies": {
     "sass": "^1.49.7"
   }
