@@ -2,8 +2,8 @@ class GameChicken {
     constructor(setup) {
         this.setup = setup;
         this.variablePositionY = setup.position[1];
-        this.crashPositionX = [setup.position[0], setup.position[0] + setup.responsiveSize[0]]
-        this.crashPosition;
+        this.positionX = [setup.position[0], setup.position[0] + setup.responsiveSize[0]]
+        this.positions;
         this.jump = 0;
     }
     drawCharacter() {
@@ -12,7 +12,7 @@ class GameChicken {
     }
     updatePosition() { 
         let jumpPosition = this.variablePositionY + this.jump;
-        this.crashPosition = [...this.crashPositionX, this.variablePositionY + this.setup.responsiveSize[1]];
+        this.positions = [...this.positionX, this.variablePositionY + this.setup.responsiveSize[1]];
         this.variablePositionY = Math.min(jumpPosition, this.setup.position[1]);
         this.jump += this.setup.jumpParams[1];
     }

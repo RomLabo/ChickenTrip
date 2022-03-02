@@ -3,12 +3,12 @@ class GameBackgound {
         this.setup = setup;
     }
     drawBackgroundDecoration() {
-        this.setup.context.drawImage(...this.setup.decorationTextureParams, ...this.setup.decorationCanvasFirstParams);
-        this.setup.context.drawImage(...this.setup.decorationTextureParams, ...this.setup.decorationCanvasSecondParams);
+        this.setup.context.drawImage(...this.setup.decorationTextureParams, ...this.setup.decorationCanvasParams[0]);
+        this.setup.context.drawImage(...this.setup.decorationTextureParams, ...this.setup.decorationCanvasParams[1]);
     }
     drawBackgroundFloor() {
-        this.setup.context.drawImage(...this.setup.floorTextureParams, ...this.setup.floorCanvasFirstParams);
-        this.setup.context.drawImage(...this.setup.floorTextureParams, ...this.setup.floorCanvasSecondParams);
+        this.setup.context.drawImage(...this.setup.floorTextureParams, ...this.setup.floorCanvasParams[0]);
+        this.setup.context.drawImage(...this.setup.floorTextureParams, ...this.setup.floorCanvasParams[1]);
     }
     render() {
         this.drawBackgroundDecoration();

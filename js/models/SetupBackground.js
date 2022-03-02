@@ -4,7 +4,7 @@ class SetupBackground {
         this._decorationSize = [768, 432];
         this._floorSize = [768, 120];
         this._floorResponsiveSize = [setup.canvasSize[0], setup.canvasSize[1] * .25 | 0];
-        this._floorPositionY = this._setup.canvasSize[1] * .77 | 0;
+        this._floorPositionY = this._setup.canvasSize[1] - this._floorResponsiveSize[1] | 0;
         this._floorSpeed = Math.round(this._setup.canvasSize[0] * .003);
     }
     get context() {
@@ -13,23 +13,17 @@ class SetupBackground {
     get decorationTextureParams() {
         return [this._setup.texture, 0, 0, ...this._decorationSize];
     }
-    get decorationCanvasFirstParams() {
+    get decorationCanvasParams() {
         let decorationMotion = (this._setup.gameIndex) % this._setup.canvasSize[0];
-        return [-decorationMotion, 0, ...this._setup.canvasSize];
-    }
-    get decorationCanvasSecondParams() {
-        let decorationMotion = (this._setup.gameIndex) % this._setup.canvasSize[0];
-        return [-decorationMotion + this._setup.canvasSize[0], 0, ...this._setup.canvasSize];
+        return [[-decorationMotion, 0, ...this._setup.canvasSize],
+            [-decorationMotion + this._setup.canvasSize[0], 0, ...this._setup.canvasSize]];
     }
     get floorTextureParams() {
         return [this._setup.texture, 0, 432, ...this._floorSize]
     }
-    get floorCanvasFirstParams() {
+    get floorCanvasParams() {
         let floorMotion = (this._setup.gameIndex * this._floorSpeed) % this._setup.canvasSize[0];
-        return [-floorMotion, this._floorPositionY, ...this._floorResponsiveSize];
-    }
-    get floorCanvasSecondParams() {
-        let floorMotion = (this._setup.gameIndex * this._floorSpeed) % this._setup.canvasSize[0];
-        return [-floorMotion + this._setup.canvasSize[0], this._floorPositionY, ...this._floorResponsiveSize];
+        return [[-floorMotion, this._floorPositionY, ...this._floorResponsiveSize],
+            [-floorMotion + this._setup.canvasSize[0], this._floorPositionY, ...this._floorResponsiveSize]];
     }
 }

@@ -7,17 +7,14 @@ class GameEnemies {
     drawCharacter() {
         this.setup.context.drawImage(...this.setup.textureParams, ...this.setup.canvasParams);
     }
-    detectCrash(chickenCrashPostion) {
-        if (this.setup.canvasParams[0] <= chickenCrashPostion[1] 
-            && this.setup.canvasParams[0] >= chickenCrashPostion[0] 
-            && chickenCrashPostion[2] >= this.setup.positionY) {
+    detectCrash(chickenPosition) {
+        let crashParamsX = [this.setup.canvasParams[0], this.setup.canvasParams[0] + (this.setup.canvasParams[3] * .5)];
+        if (crashParamsX[0] <= chickenPosition[1] 
+            && crashParamsX[1] >= chickenPosition[0] 
+            && chickenPosition[2] >= this.setup.positionY) {
             this.isCrash = true;
             this.scorePoints = 0;
-        }
-        // A revoir 
-        /*if (this.setup.canvasParams[0] < 6 && this.setup.canvasParams[0] > 0) {
-            this.scorePoints ++;
-        }*/ 
+        } 
     }
     render(chickenPosition) {
         this.drawCharacter();

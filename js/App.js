@@ -22,7 +22,7 @@ class App {
             gameMain.clearContext();
             gameBackground.render();
             gameChicken.render();
-            gameEnemies.render(gameChicken.crashPosition); 
+            gameEnemies.render(gameChicken.positions); 
             gameMain.render(gameEnemies);
             this.currentScore.textContent = gameEnemies.scorePoints;
             this.requestAnimation = requestAnimationFrame(render);
