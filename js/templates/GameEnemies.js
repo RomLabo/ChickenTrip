@@ -13,8 +13,10 @@ class GameEnemies {
             && crashParamsX[1] >= chickenPosition[0] 
             && chickenPosition[2] >= this.setup.positionY) {
             this.isCrash = true;
-            this.scorePoints = 0;
         } 
+        if (this.setup.canvasParams[0] === 0) {
+            this.scorePoints ++;
+        }
     }
     render(chickenPosition) {
         this.drawCharacter();

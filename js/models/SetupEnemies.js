@@ -18,9 +18,8 @@ class SetupEnemies {
         return this._positionY;
     }
     get canvasParams() {
-        let interval = Math.floor(this._setup.canvasSize[0] / 100) * 100;
-        let variableX = (this._setup._gameIndex * this._speedRun) % (interval * this._variableGap);
-        console.log(variableX)
-        return [-variableX + (interval * 1.5), this._positionY, ...this._responsiveSize];
+        let interval = Math.floor(this._setup.canvasSize[0] / this._speedRun) * this._speedRun;
+        let variableX = (this._setup._gameIndex * this._speedRun) % (this._variableGap * interval);
+        return [-variableX + interval, this._positionY, ...this._responsiveSize];
     }
 }
