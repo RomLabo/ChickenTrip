@@ -7,20 +7,23 @@ class App {
         this.setupMain = new SetupMain(this.texture);
         this.setupBackground = new SetupBackground(this.setupMain);
         this.setupChicken = new SetupChicken(this.setupMain);
-        this.setupEnemies = new SetupEnemies(this.setupMain);
+        this.setupButcher = new SetupButcher(this.setupMain);
+        this.setupEagle = new SetupEagle(this.setupMain);
     }
     main() {
         const gameMain = new GameMain(this.setupMain);
         const gameBackground = new GameBackgound(this.setupBackground);
         const gameChicken = new GameChicken(this.setupChicken);
-        const gameEnemies = new GameEnemies(this.setupEnemies);
+        const gameButcher = new GameButcher(this.setupButcher);
+        const gameEagle = new GameEagle(this.setupEagle);
 
         const render = () => {
             gameMain.clearContext();
             gameBackground.render();
             gameChicken.render();
-            gameEnemies.render(gameChicken.positions); 
-            gameMain.render(gameEnemies);
+            gameButcher.render(gameChicken.positions);
+            gameEagle.render(gameChicken.positions);
+            gameMain.render(gameButcher);
             this.requestAnimation = requestAnimationFrame(render);
             if (this.setupMain.gameInProgess === false) {
                 cancelAnimationFrame(this.requestAnimation);

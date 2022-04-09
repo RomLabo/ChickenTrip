@@ -12,19 +12,17 @@ class GameMain {
     }
     stopGameIfCrash(gameEnemies) {
         if (gameEnemies.isCrash === true) {
-            if (gameEnemies.scorePoints > this.bestScore.textContent) {
-                this.bestScore.textContent = gameEnemies.scorePoints;   
-            }
+            this.bestScore.textContent = gameEnemies.scorePoints > this.bestScore.textContent ? gameEnemies.scorePoints : 0 ;
             this.setup._gameInProgess = false;
             gameEnemies.scorePoints = 0;
             gameEnemies.isCrash = false;
         } 
     }
     displayAnimation() {
-        this.setup.gameInProgess === false ? this.animation.style.opacity = 1 : this.animation.style.opacity = 0;
+        !this.setup.gameInProgess ? this.animation.style.opacity = 1 : this.animation.style.opacity = 0;
     }
     incrementIndex() {
-        this.setup.gameInProgess === false ? this.setup._gameIndex = 0 : this.setup._gameIndex ++;
+        !this.setup.gameInProgess ? this.setup._gameIndex = 0 : this.setup._gameIndex ++;
     }
     render(gameEnemies) {
         this.stopGameIfCrash(gameEnemies)
