@@ -12,7 +12,7 @@ class SetupButcher {
     }
     get textureParams() {
         let motion = Math.floor((this._setup._gameIndex % 15) / 5) * this._size[0];
-        return [this._setup.texture, motion, 617, ...this._size];
+        return [this._setup.texture, motion, 538, ...this._size];
     }
     get positionY() {
         return this._positionY;

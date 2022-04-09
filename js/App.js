@@ -1,7 +1,7 @@
 class App {
     constructor() {
         this.texture = new Image();
-        this.texture.src = './textures/wood.png';
+        this.texture.src = './textures/bg-wood.png';
         this.requestAnimation;
         
         this.setupMain = new SetupMain(this.texture);

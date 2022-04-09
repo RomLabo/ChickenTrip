@@ -9,7 +9,7 @@ class SetupChicken {
     }
     get textureParams() {
         let motion = Math.floor((this._setup._gameIndex % 12) / 4) * this._size[1];
-        return [this._setup.texture, motion, 553, ...this._size];
+        return [this._setup.texture, motion, 473, ...this._size];
     }
     get responsiveSize() {
         return this._responsiveSize;

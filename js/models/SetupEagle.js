@@ -12,7 +12,7 @@ class SetupEagle {
     }
     get textureParams() {
         let motion = Math.floor((this._setup._gameIndex % 18) / 9) * this._size[0];
-        return [this._setup.texture, motion + 400, 617, ...this._size];
+        return [this._setup.texture, motion + 400, 538, ...this._size];
     }
     get positionY() {
         return this._positionY;
