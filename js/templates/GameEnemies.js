@@ -1,4 +1,4 @@
-class GameEagle {
+class GameEnemies {
     constructor(setup) {
         this.setup = setup;
         this.isCrash = false;
@@ -11,7 +11,7 @@ class GameEagle {
         let crashParamsX = [this.setup.canvasParams[0], this.setup.canvasParams[0] + (this.setup.canvasParams[3] * .5)];
         if (crashParamsX[0] <= chickenCoordinates[1] 
             && crashParamsX[1] >= chickenCoordinates[0] 
-            && chickenCoordinates[2] >= this.setup.coordinateY) {
+            && chickenCoordinates[2] >= this.setup.canvasParams[1]) {
             this.isCrash = true;
         } 
         if (this.setup.canvasParams[0] === 0) {
@@ -20,6 +20,6 @@ class GameEagle {
     }
     render(chickenCoordinates) {
         this.drawCharacter();
-        //this.detectCrash(chickenCoordinates);
+        this.detectCrash(chickenCoordinates);
     }
 }

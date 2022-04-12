@@ -15,9 +15,6 @@ class SetupButcher {
         let motion = Math.floor((this._setup._gameIndex % 15) / 5) * this._size[0];
         return [this._setup.texture, motion, 538, ...this._size];
     }
-    get coordinateY() {
-        return this._coordinateY;
-    }
     get canvasParams() {
         let variableCoordinateX = (this._setup._gameIndex * this._speedRun) % (this._maxCoordinateX + this._minCoordinateX);
         return [-variableCoordinateX + this._maxCoordinateX, this._coordinateY, ...this._responsiveSize];

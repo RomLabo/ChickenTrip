@@ -14,8 +14,8 @@ class App {
         const gameMain = new GameMain(this.setupMain);
         const gameBackground = new GameBackgound(this.setupBackground);
         const gameChicken = new GameChicken(this.setupChicken);
-        const gameButcher = new GameButcher(this.setupButcher);
-        const gameEagle = new GameEagle(this.setupEagle);
+        const gameButcher = new GameEnemies(this.setupButcher);
+        const gameEagle = new GameEnemies(this.setupEagle);
 
         const render = () => {
             gameMain.clearContext();
@@ -23,7 +23,7 @@ class App {
             gameChicken.render();
             gameButcher.render(gameChicken.allCoordinates);
             gameEagle.render(gameChicken.allCoordinates);
-            gameMain.render(gameButcher);
+            gameMain.render([gameButcher, gameEagle]);
             this.requestAnimation = requestAnimationFrame(render);
             if (this.setupMain.gameInProgess === false) {
                 cancelAnimationFrame(this.requestAnimation);
