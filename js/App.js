@@ -21,8 +21,8 @@ class App {
             gameMain.clearContext();
             gameBackground.render();
             gameChicken.render();
-            gameButcher.render(gameChicken.positions);
-            gameEagle.render(gameChicken.positions);
+            gameButcher.render(gameChicken.allCoordinates);
+            gameEagle.render(gameChicken.allCoordinates);
             gameMain.render(gameButcher);
             this.requestAnimation = requestAnimationFrame(render);
             if (this.setupMain.gameInProgess === false) {
