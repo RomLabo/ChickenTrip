@@ -4,8 +4,8 @@ class SetupBackground {
         this._decorationSize = [768, 352];
         this._floorSize = [768, 120];
         this._floorResponsiveSize = [setup.canvasSize[0], setup.canvasSize[1] * .25 | 0];
-        this._floorCoordinateY = this._setup.canvasSize[1] - this._floorResponsiveSize[1] | 0;
-        this._floorSpeed = Math.round(this._setup.canvasSize[0] * .003);
+        this._floorSpeed = Math.round(setup.canvasSize[0] * .003);
+        this._floorCoordinateY = setup.canvasSize[1] - this._floorResponsiveSize[1] | 0;
     }
     get context() {
         return this._setup.context;

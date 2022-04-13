@@ -18,6 +18,6 @@ class SetupChicken {
         return [this._setup.canvasSize[0] * .04 | 0, this._setup.canvasSize[1] * .9 - this._responsiveSize[1] | 0];
     }
     get jumpParams() {
-        return [-this._setup.canvasSize[1] * .03, this._setup.canvasSize[1] * .001];
+        return [-this._setup.canvasSize[1] * .02, this._setup.canvasSize[1] * .001];
     }
 }

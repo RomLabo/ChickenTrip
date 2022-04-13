@@ -3,8 +3,8 @@ class SetupEagle {
         this._setup = setup;
         this._size = [180, 152];
         this._responsiveSize = [setup.canvasSize[0] * .2 | 0, setup.canvasSize[0] * .15 | 0];
-        this._speedRun = setup.difficultyLevel * 2;
-        this._maxCoordinateX = Math.floor((this._setup.canvasSize[0] + 200) / this._speedRun) * this._speedRun;
+        this._speedRun = Math.round(setup.canvasSize[0] * .003) * 2;
+        this._maxCoordinateX = Math.floor((setup.canvasSize[0] + 200) / this._speedRun) * this._speedRun;
         this._minCoordinateX = Math.floor(200 / this._speedRun) * this._speedRun;
         this._variableCoordinateY = 0;
     }

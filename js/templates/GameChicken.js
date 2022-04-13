@@ -2,7 +2,7 @@ class GameChicken {
     constructor(setup) {
         this.setup = setup;
         this.variableCoordinateY = setup.coordinate[1];
-        this.coordinatesX = [setup.coordinate[0], setup.coordinate[0] + setup.responsiveSize[0]]
+        this.coordinatesX = [setup.coordinate[0], setup.coordinate[0] + setup.responsiveSize[0]];
         this.allCoordinates;
         this.jump = 0;
     }
@@ -11,9 +11,9 @@ class GameChicken {
         this.setup.context.drawImage(...this.setup.textureParams, ...canvasParams);                  
     }
     updatePosition() { 
-        let coordinateY = this.variableCoordinateY + this.jump;
-        this.allCoordinates = [...this.coordinatesX, this.variableCoordinateY + this.setup.responsiveSize[1]];
-        this.variableCoordinateY = Math.min(coordinateY, this.setup.coordinate[1]);
+        let coordinateYWithJump = this.variableCoordinateY + this.jump;
+        this.allCoordinates = [...this.coordinatesX, this.variableCoordinateY, this.variableCoordinateY + this.setup.responsiveSize[1]];
+        this.variableCoordinateY = Math.min(coordinateYWithJump, this.setup.coordinate[1]);
         this.jump += this.setup.jumpParams[1];
     }
     bringUp() {

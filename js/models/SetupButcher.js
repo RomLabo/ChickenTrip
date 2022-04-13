@@ -1,12 +1,12 @@
 class SetupButcher {
     constructor(setup) {
         this._setup = setup;
-        this._speedRun = setup.difficultyLevel * 2;
         this._size = [122, 180];
         this._responsiveSize = [setup.canvasSize[0] * .12 | 0, setup.canvasSize[0] * .15 | 0];
-        this._coordinateY = setup.canvasSize[1] * .9 - this._responsiveSize[1] | 0;
-        this._maxCoordinateX = Math.floor(this._setup.canvasSize[0] / this._speedRun) * this._speedRun;
+        this._speedRun = Math.round(setup.canvasSize[0] * .003) * 2;
+        this._maxCoordinateX = Math.floor(setup.canvasSize[0] / this._speedRun) * this._speedRun;
         this._minCoordinateX = Math.floor(200 / this._speedRun) * this._speedRun;
+        this._coordinateY = setup.canvasSize[1] * .9 - this._responsiveSize[1] | 0;
     }
     get context() {
         return this._setup.context;
