@@ -9,6 +9,7 @@ class App {
         this.setupChicken = new SetupChicken(this.setupMain);
         this.setupButcher = new SetupButcher(this.setupMain);
         this.setupEagle = new SetupEagle(this.setupMain);
+        this.setupTempGate = new SetupTempGate(this.setupMain);
     }
     main() {
         const gameMain = new GameMain(this.setupMain);
@@ -16,6 +17,7 @@ class App {
         const gameChicken = new GameChicken(this.setupChicken);
         const gameButcher = new GameEnemies(this.setupButcher);
         const gameEagle = new GameEnemies(this.setupEagle);
+        const gameTempGate = new GameEnemies(this.setupTempGate);
 
         const render = () => {
             gameMain.clearContext();
@@ -24,6 +26,10 @@ class App {
             gameButcher.render(gameChicken.allCoordinates);
             gameEagle.render(gameChicken.allCoordinates);
             gameMain.render([gameButcher, gameEagle]);
+            if (Number(gameMain.currentScore.textContent) > 4 
+                && Number(gameMain.currentScore.textContent) < 8 ) {
+                gameTempGate.render(gameChicken.allCoordinates);
+            }
             this.requestAnimation = requestAnimationFrame(render);
             if (this.setupMain.gameInProgess === false) {
                 cancelAnimationFrame(this.requestAnimation);

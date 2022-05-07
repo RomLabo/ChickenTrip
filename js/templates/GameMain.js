@@ -34,7 +34,7 @@ class GameMain {
     }
     render(gameEnemies) {
         this.stopGameIfCrash(gameEnemies)
-        this.updateScore(gameEnemies)
+        this.updateScore([gameEnemies[0], gameEnemies[1]])
         this.displayAnimation();
         this.incrementIndex();
     }
