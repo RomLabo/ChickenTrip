@@ -5,7 +5,7 @@
   "main": "App.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "sass --watch ./sass/main.scss:public/css/style.css --style compressed"
+    "sass": "sass --watch ./sass/main.scss:public/css/style.css --style expanded"
   },
   "repository": {
     "type": "git",
@@ -16,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/RomLabo/ChickenTrip/issues"
   },
-  "homepage": "https://github.com/RomLabo/ChickenTrip#readme",
-  "dependencies": {
-    "sass": "^1.49.7"
-  }
+  "homepage": "https://github.com/RomLabo/ChickenTrip#readme"
 }
