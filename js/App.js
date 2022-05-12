@@ -1,7 +1,8 @@
 class App {
     constructor() {
         this.texture = new Image();
-        this.texture.src = './textures/bg-wood.png';
+        this.allTexture = ['./textures/bg-wood.png', './textures/bg-moon.png'];
+        this.texture.src = this.allTexture[0];
         this.requestAnimation;
         
         this.setupMain = new SetupMain(this.texture);
@@ -25,14 +26,13 @@ class App {
             gameChicken.render();
             gameButcher.render(gameChicken.allCoordinates);
             gameEagle.render(gameChicken.allCoordinates);
+            gameTempGate.render(gameChicken.allCoordinates);
             gameMain.render([gameButcher, gameEagle]);
-            if (Number(gameMain.currentScore.textContent) > 4 
-                && Number(gameMain.currentScore.textContent) < 8 ) {
-                gameTempGate.render(gameChicken.allCoordinates);
-            }
+            this.texture.src = gameTempGate.scorePoints % 2 !== 0 ? this.allTexture[1]:this.allTexture[0];
             this.requestAnimation = requestAnimationFrame(render);
             if (this.setupMain.gameInProgess === false) {
                 cancelAnimationFrame(this.requestAnimation);
+                gameTempGate.scorePoints = 0;
             }   
         }
         
