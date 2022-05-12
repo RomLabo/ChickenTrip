@@ -1,7 +1,7 @@
 class SetupChicken {
     constructor(setup) {
         this._setup = setup;
-        this._size = [45, 45]; // 65, 65
+        this._size = [65, 65]; 
         this._responsiveSize = [setup.canvasSize[0] * .07 | 0, setup.canvasSize[0] * .07 | 0];
     }
     get context() {
@@ -9,7 +9,7 @@ class SetupChicken {
     }
     get textureParams() {
         let motion = Math.floor((this._setup._gameIndex % 12) / 4) * this._size[1];
-        return [this._setup.texture, motion, 315, ...this._size]; // 473
+        return [this._setup.texture, motion, 473, ...this._size]; 
     }
     get responsiveSize() {
         return this._responsiveSize;
