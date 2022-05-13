@@ -2,9 +2,8 @@ class GameMain {
     constructor(setup) {
         this.setup = setup;
         this.animation = setup._animation;
-        this.localStorageScore = JSON.parse(localStorage.getItem('chickenTripScore')) ?? 0;
         this.bestScore = document.getElementById('best-score');
-        this.bestScore.textContent = this.localStorageScore;
+        this.bestScore.textContent = JSON.parse(localStorage.getItem('chickenTripScore')) ?? 0;
         this.currentScore = document.getElementById('current-score');
         this.currentScore.textContent = 0;
     }
@@ -17,7 +16,9 @@ class GameMain {
         if (this.setup._gameInProgess === false) {
             gameEnemies.forEach((elem) => elem.scorePoints = 0);
             this.bestScore.textContent = score > this.bestScore.textContent ? score : this.bestScore.textContent;
-            localStorage.setItem('chickenTripScore', `${this.bestScore.textContent}`)
+            if (typeof localStorage != undefined) {
+                localStorage.setItem('chickenTripScore', `${this.bestScore.textContent}`);
+            }
         }
     }
     stopGameIfCrash(gameEnemies) {

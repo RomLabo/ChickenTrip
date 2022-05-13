@@ -2,7 +2,7 @@ class SetupTempGate {
     constructor(setup) {
         this._setup = setup;
         this._size = [60, 100]; 
-        this._responsiveSize = [setup.canvasSize[0] * .14 | 0, setup.canvasSize[1] * .42 | 0];
+        this._responsiveSize = [setup.canvasSize[1] * .21 | 0, setup.canvasSize[1] * .42 | 0];
         this._speedRun = Math.round(setup.canvasSize[0] * .003) * 2;
         this._maxCoordinateX = Math.floor((setup.canvasSize[0]*7) / this._speedRun) * this._speedRun;
         this._minCoordinateX = Math.floor(200 / this._speedRun) * this._speedRun;
