@@ -18,7 +18,7 @@ class App {
         const gameChicken = new GameChicken(this.setupChicken);
         const gameButcher = new GameEnemies(this.setupButcher);
         const gameEagle = new GameEnemies(this.setupEagle);
-        const gameTempGate = new GameEnemies(this.setupTempGate);
+        const gameTempGate = new GameTempGate(this.setupTempGate);
 
         const render = () => {
             gameMain.clearContext();
@@ -28,11 +28,11 @@ class App {
             gameEagle.render(gameChicken.allCoordinates);
             gameTempGate.render(gameChicken.allCoordinates);
             gameMain.render([gameButcher, gameEagle]);
-            this.texture.src = gameTempGate.scorePoints % 2 !== 0 ? this.allTexture[1]:this.allTexture[0];
+            this.texture.src = gameTempGate.isTeleportation % 2 !== 0 ? this.allTexture[1]:this.allTexture[0];
             this.requestAnimation = requestAnimationFrame(render);
             if (this.setupMain.gameInProgess === false) {
                 cancelAnimationFrame(this.requestAnimation);
-                gameTempGate.scorePoints = 0;
+                gameTempGate.isTeleportation = 0;
             }   
         }
         

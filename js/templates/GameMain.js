@@ -3,7 +3,7 @@ class GameMain {
         this.setup = setup;
         this.animation = setup._animation;
         this.bestScore = document.getElementById('best-score');
-        this.bestScore.textContent = JSON.parse(localStorage.getItem('chickenTripScore')) ?? 0;
+        this.bestScore.textContent = 0;
         this.currentScore = document.getElementById('current-score');
         this.currentScore.textContent = 0;
     }
@@ -11,6 +11,9 @@ class GameMain {
         this.setup._context.clearRect(0, 0, ...this.setup.canvasSize);
     }
     updateScore(gameEnemies) {
+        if (localStorage.getItem('chickenTripScore')) {
+            this.bestScore.textContent = JSON.parse(localStorage.getItem('chickenTripScore'));
+        }
         let score = gameEnemies.reduce((a, b) => a.scorePoints + b.scorePoints);
         this.currentScore.textContent = score;
         if (this.setup._gameInProgess === false) {
