@@ -31,7 +31,7 @@ class GameMain {
         }
     }
     displayAnimation() {
-        !this.setup.gameInProgess ? this.animation.style.opacity = 1 : this.animation.style.opacity = 0;
+        !this.setup.gameInProgess ? this.animation.style.transform = 'scale(1,1)' : this.animation.style.transform = 'scale(0,0)';
     }
     incrementIndex() {
         !this.setup.gameInProgess ? this.setup._gameIndex = 0 : this.setup._gameIndex ++;
