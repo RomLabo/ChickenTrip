@@ -11,7 +11,7 @@ class GameMain {
         this.setup._context.clearRect(0, 0, ...this.setup.canvasSize);
     }
     updateScore(gameEnemies) {
-        if (localStorage.getItem('chickenTripScore')) {
+        if (navigator.cookieEnabled && typeof localStorage != undefined && localStorage.getItem('chickenTripScore') != null) {
             this.bestScore.textContent = JSON.parse(localStorage.getItem('chickenTripScore'));
         }
         let score = gameEnemies.reduce((a, b) => a.scorePoints + b.scorePoints);
@@ -19,7 +19,7 @@ class GameMain {
         if (this.setup._gameInProgess === false) {
             gameEnemies.forEach((elem) => elem.scorePoints = 0);
             this.bestScore.textContent = score > this.bestScore.textContent ? score : this.bestScore.textContent;
-            if (typeof localStorage != undefined) {
+            if (navigator.cookieEnabled && typeof localStorage != undefined) {
                 localStorage.setItem('chickenTripScore', `${this.bestScore.textContent}`);
             }
         }

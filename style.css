@@ -10,6 +10,7 @@ body {
 }
 #canvas {
     position: relative;
+    background-color: black;
 }
 .score {
     position: absolute;
