@@ -49,6 +49,16 @@ class App {
     }
 }
 
-const app = new App();
 const imageIsLoaded = new AbortController();
-app.texture.addEventListener('load', () => app.main(), { signal: imageIsLoaded.signal });
+
+const interV = setInterval(() => {
+    if (window.innerWidth > window.innerHeight) {
+        const app = new App();
+        app.texture.addEventListener('load', () => app.main(), { signal: imageIsLoaded.signal });
+        document.getElementById('screen-msg').style.display = 'none';
+        document.getElementById('previous-animation').style.animation = 'disappear 4s';
+        clearInterval(interV);
+    }
+}, 2);
+
+
