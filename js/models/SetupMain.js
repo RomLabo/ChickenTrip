@@ -7,7 +7,7 @@ class SetupMain {
         this._canvas.height = window.innerHeight;
         this._gameIndex = 0;
         this._gameInProgess = false;
-        this._animation = document.getElementById('start-animation');
+        this._animation = document.getElementById('start-msg-animation');
     }
     get context() {
         return this._context;

@@ -56,7 +56,8 @@ const interV = setInterval(() => {
         const app = new App();
         app.texture.addEventListener('load', () => app.main(), { signal: imageIsLoaded.signal });
         document.getElementById('screen-msg').style.display = 'none';
-        document.getElementById('previous-animation').style.animation = 'disappear 4s';
+        document.getElementById('start-animation').style.animation = 'disappear 4s';
+        document.querySelectorAll('span.start__letter').forEach((elm) => elm.style.animation = 'move 1s forwards');
         clearInterval(interV);
     }
 }, 2);

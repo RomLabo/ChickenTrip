@@ -46,31 +46,90 @@ body {
     height: 100%;
     z-index: 2;
     background-color: black;
-    font-size: 2.5em;
+    font-size: 2em;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: center;
     color: #b87623;
     top: 0;
     left: 0;
 }
-#previous-animation {
+#start-animation {
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black; 
+    gap: 1%;
     width: 100%;
     height: 100%;
-    z-index: 1;
-    background-color: black;
-    font-size: 3.5rem;
-    text-align: center;
-    color: #b87623;
     top: 0;
     left: 0;
     opacity: 0;
-    z-index: -1;
+    z-index: 2;
+    transform-origin: top left;
+    transform: scale(0,0);
     animation: none;
 }
-#start-animation {
+.start {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.start__letter {
+    overflow: hidden;
+    overflow: inherit;
+    animation: none;
+    color: #b87623;
+    text-shadow: 3px 3px 3px black;
+    transform: scale(0,0);
+    font-size: 3.5rem;
+}
+.start__letter--1 {
+    animation-delay: 50ms;
+    transform-origin: top left;
+}
+.start__letter--2 {
+    animation-delay: 150ms;
+    transform-origin: bottom left;
+}
+.start__letter--3 {
+    animation-delay: 250ms;
+    transform-origin: bottom right;
+}
+.start__letter--4 {
+    animation-delay: 350ms;
+    transform-origin: top right;
+}
+.start__letter--5 {
+    animation-delay: 450ms;
+    transform-origin: top left;
+}
+.start__letter--6 {
+    animation-delay: 550ms;
+    transform-origin: bottom right;
+}
+.start__letter--7 {
+    animation-delay: 650ms;
+    transform-origin: top left;
+}
+.start__letter--8 {
+    animation-delay: 750ms;
+    transform-origin: bottom right;
+}
+.start__letter--9 {
+    animation-delay: 850ms;
+    transform-origin: bottom left;
+}
+.start__letter--10 {
+    animation-delay: 950ms;
+    transform-origin: top right;
+}
+.start__letter--11 {
+    animation-delay: 1050ms;
+    transform-origin: bottom left;
+}
+#start-msg-animation {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -80,84 +139,92 @@ body {
     height: 100%;
     top: 0;
     left: 0;
+    z-index: 1;
     transform-origin: top left;
     transform: scale(1,1);
 }
-.start {
+.start-msg {
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.start__spinner {
+.start-msg__letter {
     overflow: hidden;
     overflow: inherit;
-    animation: 400ms cubic-bezier(0.35, 0.3, 0.32, 0.99) 100ms 15 alternate move;
+    animation: 400ms cubic-bezier(.42,0,1,1) scale alternate 20;
     color: #b87623;
     text-shadow: 3px 3px 3px black;
+    transform: scale(1,1);
     font-size: 3rem;
 }
-.start__spinner--1 {
+.start-msg__letter--1 {
     animation-delay: 50ms;
 }
-.start__spinner--2 {
+.start-msg__letter--2 {
     animation-delay: 100ms;
 }
-.start__spinner--3 {
+.start-msg__letter--3 {
     animation-delay: 150ms;
 }
-.start__spinner--4 {
+.start-msg__letter--4 {
     animation-delay: 200ms;
 }
-.start__spinner--5 {
+.start-msg__letter--5 {
     animation-delay: 250ms;
 }
-.start__spinner--6 {
+.start-msg__letter--6 {
     animation-delay: 300ms;
 }
-.start__spinner--7 {
+.start-msg__letter--7 {
     animation-delay: 350ms;
 }
-.start__spinner--8 {
+.start-msg__letter--8 {
     animation-delay: 400ms;
 }
-.start__spinner--9 {
+.start-msg__letter--9 {
     animation-delay: 450ms;
 }
-.start__spinner--10 {
+.start-msg__letter--10 {
     animation-delay: 500ms;
 }
-.start__spinner--11 {
+.start-msg__letter--11 {
     animation-delay: 550ms;
 }
-.start__spinner--12 {
+.start-msg__letter--12 {
     animation-delay: 600ms;
 }
 @keyframes disappear {
     0% {
-        z-index: 1;
+        transform: scale(1,1);
         opacity: 1;
     }
-    60% {
-        z-index: 1;
+    80% {
+        transform: scale(1,1);
         opacity: 1;
+    }
+    90% {
+        transform: scale(1,1);
+        opacity: 0;
     }
     100% {
-        z-index: -1;
+        transform: scale(0,0);
         opacity: 0;
     }
 }
 @keyframes move {
     0% {
-        transform: translateY(0);
-        opacity: 0.7;
-    }
-    60% {
-        transform: translateY(10px);
-        opacity: 0.9;
+        transform: scale(0,0);
     }
     100% {
-        transform: translateY(14px);
-        opacity: 1;
+        transform: scale(1,1);
+    }
+}
+@keyframes scale {
+    0% {
+        transform: scale(.7,.7);
+    }
+    100% {
+        transform: scale(1.2, 1.2);
     }
 }
