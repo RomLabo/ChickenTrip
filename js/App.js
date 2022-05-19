@@ -43,23 +43,15 @@ class App {
             }
             gameChicken.bringUp();
         })
-
-        gameBackground.render();
-        imageIsLoaded.abort();
     }
 }
 
-const imageIsLoaded = new AbortController();
-
-const interV = setInterval(() => {
+const screenOrientation = setInterval(() => {
     if (window.innerWidth > window.innerHeight) {
         const app = new App();
-        app.texture.addEventListener('load', () => app.main(), { signal: imageIsLoaded.signal });
-        document.getElementById('screen-msg').style.display = 'none';
-        document.getElementById('start-animation').style.animation = 'disappear 4s';
-        document.querySelectorAll('span.start__letter').forEach((elm) => elm.style.animation = 'move 1s forwards');
-        clearInterval(interV);
+        app.main();
+        clearInterval(screenOrientation);
     }
-}, 2);
+}, 1);
 
 
