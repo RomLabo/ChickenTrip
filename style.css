@@ -9,12 +9,12 @@ body {
     overflow: hidden;
     background-color: black;
 }
+#main-texture {
+    display: none;
+}
 #canvas {
     position: relative;
     background-color: black;
-    /* background-image: url('./textures/bg-wood.png');
-    background-size: 100% 196%;
-    background-repeat: no-repeat; */
 }
 .score {
     position: absolute;
@@ -67,10 +67,10 @@ body {
     top: 0;
     left: 0;
     opacity: 0;
-    z-index: 2;
+    z-index: 3;
     transform-origin: top left;
     transform: scale(0,0);
-    animation: disappear 4s;
+    animation: appear 4s;
 }
 .start {
     margin: 0;
@@ -79,9 +79,9 @@ body {
     align-items: center;
 }
 .start__letter {
-    animation: move 1s forwards;
+    animation: move 1s;
     color: #b87623;
-    transform: scale(0,0);
+    transform: scale(1,1);
     font-size: 3em;
 }
 .start__letter--1 {
@@ -191,7 +191,7 @@ body {
 .start-msg__letter--12 {
     animation-delay: 600ms;
 }
-@keyframes disappear {
+@keyframes appear {
     0% {
         transform: scale(1,1);
         opacity: 1;
@@ -211,10 +211,10 @@ body {
 }
 @keyframes move {
     0% {
-        transform: scale(0,0);
+        transform: scale(1,1);
     }
     100% {
-        transform: scale(1,1);
+        transform: scale(0,0);
     }
 }
 @keyframes scale {

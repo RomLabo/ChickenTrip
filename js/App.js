@@ -1,6 +1,6 @@
 class App {
     constructor() {
-        this.texture = new Image();
+        this.texture = document.getElementById('main-texture');
         this.allTexture = ['./textures/bg-wood.png', './textures/bg-moon.png'];
         this.texture.src = this.allTexture[0];
         this.requestAnimation;
@@ -43,13 +43,15 @@ class App {
             }
             gameChicken.bringUp();
         })
+
+        gameBackground.render()
     }
 }
 
 const screenOrientation = setInterval(() => {
     if (window.innerWidth > window.innerHeight) {
         const app = new App();
-        app.main();
+        app.main()
         clearInterval(screenOrientation);
     }
 }, 1);
