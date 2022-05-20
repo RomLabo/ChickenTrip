@@ -9,8 +9,10 @@ body {
     overflow: hidden;
     background-color: black;
 }
-#main-texture {
-    display: none;
+#preload-texture {
+    width: 0;
+    height: 0;
+    background-image: url(./textures/bg-wood.png), url(./textures/bg-moon.png);
 }
 #canvas {
     position: relative;
@@ -43,6 +45,7 @@ body {
 #screen-msg {
     position: absolute;
     display: none;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 2;
@@ -79,7 +82,7 @@ body {
     align-items: center;
 }
 .start__letter {
-    animation: move 1s;
+    animation: move 2s;
     color: #b87623;
     transform: scale(1,1);
     font-size: 3em;
@@ -211,6 +214,9 @@ body {
 }
 @keyframes move {
     0% {
+        transform: scale(1,1);
+    }
+    80% {
         transform: scale(1,1);
     }
     100% {

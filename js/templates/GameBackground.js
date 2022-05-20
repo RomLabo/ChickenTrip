@@ -1,4 +1,4 @@
-class GameBackgound {
+class GameBackground {
     constructor(setup) {
         this.setup = setup;
     }
