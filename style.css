@@ -9,9 +9,17 @@ body {
     overflow: hidden;
     background-color: black;
 }
+#main-texture {
+    width: 0;
+    height: 0;
+    z-index: -2;
+    position: absolute;
+}
 #preload-texture {
     width: 0;
     height: 0;
+    z-index: -1;
+    position: absolute;
     background-image: url(./textures/bg-wood.png), url(./textures/bg-moon.png);
 }
 #canvas {
@@ -43,37 +51,32 @@ body {
     font-size: 1rem;
 }
 #screen-msg {
-    position: absolute;
     display: none;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     z-index: 2;
-    width: 100%;
-    height: 100%;
-    background-color: black;
     font-size: 2em;
     text-align: center;
     color: #b87623;
-    top: 0;
-    left: 0;
+    background-color: black;
 }
 #start-animation {
-    position: absolute;
     display: flex;
     flex-direction: column;
+    z-index: 3;
+    opacity: 0;
+    transform-origin: top left;
+    transform: scale(0,0);
+    animation: appear 4s;
+    background-color: black;
+}
+#screen-msg, #start-animation, #start-msg-animation {
+    position: absolute;
     justify-content: center;
     align-items: center;
-    background-color: black; 
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    opacity: 0;
-    z-index: 3;
-    transform-origin: top left;
-    transform: scale(0,0);
-    animation: appear 4s;
 }
 .start {
     margin: 0;
@@ -87,76 +90,64 @@ body {
     transform: scale(1,1);
     font-size: 3em;
 }
+.start__letter--1, .start__letter--5, .start__letter--7 {
+    transform-origin: top left;
+}
+.start__letter--3, .start__letter--6, .start__letter--8 {
+    transform-origin: bottom right;
+}
+.start__letter--2, .start__letter--9, .start__letter--11 {
+    transform-origin: bottom left;
+}
+.start__letter--4, .start__letter--10 {
+    transform-origin: top right;
+}
 .start__letter--1 {
     animation-delay: 50ms;
-    transform-origin: top left;
 }
 .start__letter--2 {
     animation-delay: 150ms;
-    transform-origin: bottom left;
 }
 .start__letter--3 {
     animation-delay: 250ms;
-    transform-origin: bottom right;
 }
 .start__letter--4 {
     animation-delay: 350ms;
-    transform-origin: top right;
 }
 .start__letter--5 {
     animation-delay: 450ms;
-    transform-origin: top left;
 }
 .start__letter--6 {
     animation-delay: 550ms;
-    transform-origin: bottom right;
 }
 .start__letter--7 {
     animation-delay: 650ms;
-    transform-origin: top left;
 }
 .start__letter--8 {
     animation-delay: 750ms;
-    transform-origin: bottom right;
 }
 .start__letter--9 {
     animation-delay: 850ms;
-    transform-origin: bottom left;
 }
 .start__letter--10 {
     animation-delay: 950ms;
-    transform-origin: top right;
 }
 .start__letter--11 {
     animation-delay: 1050ms;
-    transform-origin: bottom left;
 }
 #start-msg-animation {
-    position: absolute;
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 1%;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
     z-index: 1;
     transform-origin: top left;
     transform: scale(1,1);
-}
-.start-msg {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .start-msg__letter {
     animation: 400ms cubic-bezier(.42,0,1,1) scale alternate 20;
     color: #b87623;
     text-shadow: 3px 3px 3px black;
     transform: scale(1,1);
-    font-size: 3rem;
+    font-size: 3em;
 }
 .start-msg__letter--1 {
     animation-delay: 50ms;
