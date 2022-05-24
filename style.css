@@ -20,7 +20,7 @@ body {
     height: 0;
     z-index: -1;
     position: absolute;
-    background-image: url(./textures/bg-wood.png), url(./textures/bg-moon.png);
+    background-image: url(./textures/bg-moon.png);
 }
 #canvas {
     position: relative;
