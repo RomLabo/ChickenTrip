@@ -48,7 +48,7 @@ class App {
 }
 
 const screenOrientationIsLandscape = setInterval(() => {
-    if (window.innerWidth > window.innerHeight) {
+    if (window.innerWidth > window.innerHeight && document.readyState === "complete") {
         const app = new App();
         app.main();
         clearInterval(screenOrientationIsLandscape);

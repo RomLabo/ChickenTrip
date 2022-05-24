@@ -13,7 +13,7 @@ class SetupEagle {
         return this._setup.context;
     }
     get textureParams() {
-        let motion = Math.floor((this._setup._gameIndex % 30) / 10) * this._size[0];
+        let motion = Math.floor((this._setup._gameIndex % 24) / 8) * this._size[0];
         return [this._setup.texture, motion + 400, 472, ...this._size]; 
     }
     get canvasParams() {

@@ -17,6 +17,8 @@ class GameEnemies {
             || (chickenCoordinates[3] >= coordinateY[0] && chickenCoordinates[3] <= coordinateY[1])))) {
                     this.isCrash = true
         }
+    }
+    updateScorePoint() {
         if (this.setup.canvasParams[0] === 0) {
             this.scorePoints ++;
         }
@@ -24,5 +26,6 @@ class GameEnemies {
     render(chickenCoordinates) {
         this.drawCharacter();
         this.detectCrash(chickenCoordinates);
+        this.updateScorePoint();
     }
 }
