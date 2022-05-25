@@ -1,7 +1,6 @@
 class App {
     constructor() {
         this.texture = document.getElementById('main-texture');
-        this.allTexture = ['./textures/bg-wood.png', './textures/bg-moon.png'];
         this.requestAnimation;
         
         this.setupMain = new SetupMain(this.texture);
@@ -10,6 +9,14 @@ class App {
         this.setupButcher = new SetupButcher(this.setupMain);
         this.setupEagle = new SetupEagle(this.setupMain);
         this.setupTempGate = new SetupTempGate(this.setupMain);
+        
+        this.bgMoon = new Image();
+        this.bgMoon.src = './textures/bg-moon.png';
+        this.bgWood = new Image();
+        this.bgWood.src = './textures/bg-wood.png';
+        this.bgPreHist = new Image();
+        this.bgPreHist.src = './textures/bg-prehist.png';
+        this.allTextures = [this.bgMoon.src, this.bgPreHist.src];
     }
     main() {
         const gameMain = new GameMain(this.setupMain);
@@ -27,14 +34,26 @@ class App {
             gameEagle.render(gameChicken.allCoordinates);
             gameTempGate.render(gameChicken.allCoordinates);
             gameMain.render([gameButcher, gameEagle]);
-            this.texture.src = gameTempGate.isTeleportation % 2 !== 0 ? this.allTexture[1]:this.allTexture[0];
+            
+            // Change background and characters textures
+            if (gameTempGate.isTeleported) {
+                if (gameTempGate.isTeleportation % 2 !== 0) {
+                    this.texture.src = this.allTextures[0];
+                    this.allTextures.reverse();
+                } else {
+                    this.texture.src = this.bgWood.src;
+                }
+            }
+
             this.requestAnimation = requestAnimationFrame(render);
             if (this.setupMain.gameInProgess === false) {
                 cancelAnimationFrame(this.requestAnimation);
                 gameTempGate.isTeleportation = 0;
+                this.texture.src = this.bgWood.src;
             }   
         }
         
+        // Start game
         document.addEventListener('click', () => {
             if (this.setupMain.gameInProgess === false) {
                 this.requestAnimation = requestAnimationFrame(render);

@@ -15,13 +15,6 @@ body {
     z-index: -2;
     position: absolute;
 }
-#preload-texture {
-    width: 0;
-    height: 0;
-    z-index: -1;
-    position: absolute;
-    background-image: url(./textures/bg-moon.png);
-}
 #canvas {
     position: relative;
     background-color: black;
