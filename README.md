@@ -10,6 +10,7 @@ vous retrouviez dans un monde parallèle...
 
 Des améliorations ainsi que de nouvelles textures sont à venir.
 
+***Il est possible de jouer depuis un pc mais le rendu des textures ne sera pas optimal***
 
 Pour jouer c'est [ICI](https://romlabo.github.io/ChickenTrip/)
 
