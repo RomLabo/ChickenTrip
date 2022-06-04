@@ -16,16 +16,21 @@ Pour jouer [https://romlabo.github.io/ChickenTrip/](https://romlabo.github.io/Ch
 
 
 
-### Technologies utilisées
+## Technologies utilisées
 
 * HTML5
 * CSS3
 * JavaScript
 
-### Pré-requis
+## Pré-requis
 
 Aucun
 
-### Installation
+## Installation
 
 Auncune
+
+## Contact
+
+Romain
+mail: rolabdev@gmail.com

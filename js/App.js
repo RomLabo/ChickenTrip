@@ -16,7 +16,9 @@ class App {
         this.bgWood.src = './textures/bg-wood.png';
         this.bgPreHist = new Image();
         this.bgPreHist.src = './textures/bg-prehist.png';
-        this.allTextures = [this.bgMoon.src, this.bgPreHist.src];
+        this.bgWestern = new Image();
+        this.bgWestern.src = '/textures/bg-western.png';
+        this.allTextures = [this.bgMoon.src, this.bgPreHist.src, this.bgWestern.src];
     }
     main() {
         const gameMain = new GameMain(this.setupMain);
@@ -39,7 +41,8 @@ class App {
             if (gameTempGate.isTeleported) {
                 if (gameTempGate.isTeleportation % 2 !== 0) {
                     this.texture.src = this.allTextures[0];
-                    this.allTextures.reverse();
+                    this.allTextures.push(this.allTextures[0]);
+                    this.allTextures.splice(0, 1);
                 } else {
                     this.texture.src = this.bgWood.src;
                 }
