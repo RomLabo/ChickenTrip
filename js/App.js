@@ -11,13 +11,17 @@ class App {
         this.setupTempGate = new SetupTempGate(this.setupMain);
         
         this.bgMoon = new Image();
+        this.bgMoon.decoding = 'sync';
         this.bgMoon.src = './textures/bg-moon.png';
         this.bgWood = new Image();
+        this.bgWood.decoding = 'sync';
         this.bgWood.src = './textures/bg-wood.png';
         this.bgPreHist = new Image();
+        this.bgPreHist.decoding = 'sync';
         this.bgPreHist.src = './textures/bg-prehist.png';
         this.bgWestern = new Image();
-        this.bgWestern.src = '/textures/bg-western.png';
+        this.bgWestern.decoding = 'sync';
+        this.bgWestern.src = './textures/bg-western.png';
         this.allTextures = [this.bgMoon.src, this.bgPreHist.src, this.bgWestern.src];
     }
     main() {
