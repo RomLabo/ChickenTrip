@@ -1,36 +1,34 @@
 class App {
     constructor() {
-        this.texture = document.getElementById('main-texture');
+        this.bgWood = document.getElementById('main-texture');
+        this.textureIndex = 1;
         this.requestAnimation;
-        
-        this.setupMain = new SetupMain(this.texture);
-        this.setupBackground = new SetupBackground(this.setupMain);
-        this.setupChicken = new SetupChicken(this.setupMain);
-        this.setupButcher = new SetupButcher(this.setupMain);
-        this.setupEagle = new SetupEagle(this.setupMain);
-        this.setupTempGate = new SetupTempGate(this.setupMain);
         
         this.bgMoon = new Image();
         this.bgMoon.decoding = 'sync';
         this.bgMoon.src = './textures/bg-moon.png';
-        this.bgWood = new Image();
-        this.bgWood.decoding = 'sync';
-        this.bgWood.src = './textures/bg-wood.png';
         this.bgPreHist = new Image();
         this.bgPreHist.decoding = 'sync';
         this.bgPreHist.src = './textures/bg-prehist.png';
         this.bgWestern = new Image();
         this.bgWestern.decoding = 'sync';
         this.bgWestern.src = './textures/bg-western.png';
-        this.allTextures = [this.bgMoon.src, this.bgPreHist.src, this.bgWestern.src];
+        this.allTextures = [this.bgWood, this.bgMoon, this.bgPreHist, this.bgWestern];
     }
     main() {
-        const gameMain = new GameMain(this.setupMain);
-        const gameBackground = new GameBackground(this.setupBackground);
-        const gameChicken = new GameChicken(this.setupChicken);
-        const gameButcher = new GameEnemies(this.setupButcher);
-        const gameEagle = new GameEnemies(this.setupEagle);
-        const gameTempGate = new GameTempGate(this.setupTempGate);
+        const setupMain = new SetupMain(this.allTextures[0]);
+        const setupBackground = new SetupBackground(setupMain);
+        const setupChicken = new SetupChicken(setupMain);
+        const setupButcher = new SetupButcher(setupMain);
+        const setupEagle = new SetupEagle(setupMain);
+        const setupTempGate =new SetupTempGate(setupMain);
+
+        const gameMain = new GameMain(setupMain);
+        const gameBackground = new GameBackground(setupBackground);
+        const gameChicken = new GameChicken(setupChicken);
+        const gameButcher = new GameEnemies(setupButcher);
+        const gameEagle = new GameEnemies(setupEagle);
+        const gameTempGate = new GameTempGate(setupTempGate);
 
         const render = () => {
             gameMain.clearContext();
@@ -44,27 +42,25 @@ class App {
             // Change background and characters textures
             if (gameTempGate.isTeleported) {
                 if (gameTempGate.isTeleportation % 2 !== 0) {
-                    this.texture.src = this.allTextures[0];
-                    this.allTextures.push(this.allTextures[0]);
-                    this.allTextures.splice(0, 1);
+                    setupMain._texture = this.allTextures[this.textureIndex];
+                    this.textureIndex === 3 ? this.textureIndex = 1 : this.textureIndex ++;
                 } else {
-                    this.texture.src = this.bgWood.src;
+                    setupMain._texture = this.allTextures[0];
                 }
             }
 
             this.requestAnimation = requestAnimationFrame(render);
-            if (this.setupMain.gameInProgess === false) {
+            if (setupMain.gameInProgess === false) {
                 cancelAnimationFrame(this.requestAnimation);
                 gameTempGate.isTeleportation = 0;
-                this.texture.src = this.bgWood.src;
+                setupMain._texture = this.allTextures[0];
             }   
         }
         
-        // Start game
         document.addEventListener('click', () => {
-            if (this.setupMain.gameInProgess === false) {
+            if (setupMain.gameInProgess === false) {
                 this.requestAnimation = requestAnimationFrame(render);
-                this.setupMain._gameInProgess = true;
+                setupMain._gameInProgess = true;
             }
             gameChicken.bringUp();
         })
