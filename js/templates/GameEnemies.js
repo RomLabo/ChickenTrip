@@ -25,7 +25,7 @@ class GameEnemies {
     }
     render(chickenCoordinates) {
         this.drawCharacter();
-        //this.detectCrash(chickenCoordinates);
+        this.detectCrash(chickenCoordinates);
         this.updateScorePoint();
     }
 }
