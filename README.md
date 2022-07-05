@@ -15,7 +15,6 @@ Des améliorations ainsi que de nouvelles textures sont à venir.
 Pour jouer [https://romlabo.github.io/ChickenTrip/](https://romlabo.github.io/ChickenTrip/)
 
 
-
 ## Technologies utilisées
 
 * HTML5
