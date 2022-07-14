@@ -21,7 +21,8 @@ class App {
         const setupChicken = new SetupChicken(setupMain);
         const setupButcher = new SetupButcher(setupMain);
         const setupEagle = new SetupEagle(setupMain);
-        const setupTempGate =new SetupTempGate(setupMain);
+        const setupTempGate = new SetupTempGate(setupMain);
+        const setupBonus = new SetupBonus(setupMain);
 
         const gameMain = new GameMain(setupMain);
         const gameBackground = new GameBackground(setupBackground);
@@ -29,6 +30,7 @@ class App {
         const gameButcher = new GameEnemies(setupButcher);
         const gameEagle = new GameEnemies(setupEagle);
         const gameTempGate = new GameTempGate(setupTempGate);
+        const gameBonus = new GameBonus(setupBonus);
 
         const render = () => {
             gameMain.clearContext();
@@ -37,9 +39,9 @@ class App {
             gameButcher.render(gameChicken.allCoordinates);
             gameEagle.render(gameChicken.allCoordinates);
             gameTempGate.render(gameChicken.allCoordinates);
-            gameMain.render([gameButcher, gameEagle]);
+            gameBonus.render(gameChicken.allCoordinates);
+            gameMain.render([gameButcher, gameEagle], gameBonus);
             
-            // Change background and characters textures
             if (gameTempGate.isTeleported) {
                 if (gameTempGate.isTeleportation % 2 !== 0) {
                     setupMain._texture = this.allTextures[this.textureIndex];

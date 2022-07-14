@@ -16,7 +16,7 @@ class SetupChicken {
         return this._responsiveSize;
     }
     get coordinate() {
-        return [this._speedRun * 6, this._setup.canvasSize[1] * .9 - this._responsiveSize[1] | 0]; // this._setup.canvasSize[0] * .04 | 0
+        return [this._speedRun * 6, this._setup.canvasSize[1] * .9 - this._responsiveSize[1] | 0]; 
     }
     get jumpParams() {
         return [-this._setup.canvasSize[1] * .03, this._setup.canvasSize[1] * .0012]; // * .03, * (.001 || .0015)

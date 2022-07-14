@@ -15,7 +15,6 @@ class GameChicken {
         this.allCoordinates = [...this.coordinatesX, this.variableCoordinateY, this.variableCoordinateY + this.setup.responsiveSize[1]];
         this.variableCoordinateY = Math.min(coordinateYWithJump, this.setup.coordinate[1]);
         this.variableCoordinateY <= 0 ? this.jump += (this.setup.jumpParams[1] * 2) : this.jump += this.setup.jumpParams[1];
-        // this.jump += this.setup.jumpParams[1];
     }
     bringUp() {
         this.jump = Math.sign(this.variableCoordinateY) * this.setup.jumpParams[0];
