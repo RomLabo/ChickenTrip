@@ -2,9 +2,10 @@ class GameBonus {
     constructor(setup) {
         this.setup = setup;
         this.isBonus = false;
+        this.bonusIsTake = false;
     }
     drawCharacter() {
-        if (this.setup.canvasParams[0] > this.setup._speedRun * 6) {
+        if (!this.bonusIsTake) {
             this.setup.context.drawImage(...this.setup.textureParams, ...this.setup.canvasParams);
         }
     }
@@ -17,6 +18,10 @@ class GameBonus {
             && (((chickenCoordinates[2] >= coordinateY[0] && chickenCoordinates[2] <= coordinateY[1])
             || (chickenCoordinates[3] >= coordinateY[0] && chickenCoordinates[3] <= coordinateY[1])))) {
                     this.isBonus = true
+                    this.bonusIsTake = true;
+        }
+        if (this.setup.canvasParams[0] <= (0 - this.setup.canvasParams[2])) {
+            this.bonusIsTake = false;
         }
     }
     render(chickenCoordinates) {
